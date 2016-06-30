@@ -126,7 +126,7 @@
         <!--City Name-->
         <scene sceneID="eXW-SQ-Go1">
             <objects>
-                <viewController title="City Name" id="g3W-w2-Ddb" sceneMemberID="viewController">
+                <viewController title="City Name" id="g3W-w2-Ddb" customClass="DetailedReportViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="786-kS-QUQ"/>
                         <viewControllerLayoutGuide type="bottom" id="teO-3q-jyj"/>
