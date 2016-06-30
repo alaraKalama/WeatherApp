@@ -3,16 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>Places</key>
-	<array>
+	<dict>
+		<key>London</key>
 		<dict>
 			<key>longitude</key>
 			<string></string>
 			<key>latitude</key>
 			<string></string>
-			<key>name</key>
+		</dict>
+		<key>Paris</key>
+		<dict>
+			<key>latitude</key>
+			<string></string>
+			<key>longitude</key>
 			<string></string>
 		</dict>
-		<string></string>
-	</array>
+	</dict>
 </dict>
 </plist>

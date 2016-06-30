@@ -11,21 +11,9 @@ import UIKit
 class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     let textCellIdentifier = "placeCell"
-    var data: Dictionary<String, Dictionary<String, String>> = [
-        "London" : [
-            "temperature":"23",
-            "time":"10:54"
-        ],
-        "Paris" : [
-            "temperature":"28",
-            "time":"11:54"
-        ],
-        "Sofia" : [
-            "temperature":"29",
-            "time":"12:54"
-        ],
-        
-    ]
+    
+    let downloadManager = DownloadManager()
+    var data : Dictionary<String, Dictionary<String, String>>!
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -33,6 +21,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        data = downloadManager.getData()
     }
     
     // MARK: - Table View Data Source
@@ -59,15 +48,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        //let row = indexPath.row
-        NSLog("tabbed on cell")
-    }
-    
-    // MARK: - parsing my data
-    //REMOVE!
-    func getInfo(data: Dictionary<String, String>) -> (String) {
-        return ""
     }
 }
 
