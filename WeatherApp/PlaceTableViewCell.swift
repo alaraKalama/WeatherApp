@@ -10,6 +10,11 @@ import UIKit
 
 class PlaceTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var timeNowLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
