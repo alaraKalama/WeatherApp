@@ -16,9 +16,8 @@ class Place {
     var currentTemperature: Int!
     var currentTime: NSDate!
     
-    func getPlaceFromDictionary(key: String, dict: Dictionary<String, String>) -> Place {
+    static func getPlaceFromDictionary(dict: NSDictionary) -> Place {
         let place = Place()
         return place
     }
-    
 }

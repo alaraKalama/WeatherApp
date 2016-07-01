@@ -12,7 +12,10 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     let textCellIdentifier = "placeCell"
     
-    let downloadManager = DownloadManager()
+    let downloadManager = DownloadManager.sharedInstance
+    
+    let plistManager = PlistManager.sharedInstance
+    
     var data : Dictionary<String, Dictionary<String, String>>!
 
     @IBOutlet weak var tableView: UITableView!
@@ -21,8 +24,19 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        self.populateTableView()
+        
+        
+    }
+    
+    // MARK: - Fetch data
+    func populateTableView() {
+        let places = plistManager.getAllPlaces()
+        
+        
         data = downloadManager.getData()
     }
+    
     
     // MARK: - Table View Data Source
     

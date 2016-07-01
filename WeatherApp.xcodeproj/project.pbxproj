@@ -10,6 +10,7 @@
 		A67C4B6F1D2569C00016F6E1 /* DetailedReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B6E1D2569C00016F6E1 /* DetailedReportViewController.swift */; };
 		A67C4B721D2572090016F6E1 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B711D2572090016F6E1 /* DownloadManager.swift */; };
 		A67C4B751D257E680016F6E1 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B741D257E680016F6E1 /* Place.swift */; };
+		A67C4B771D2657180016F6E1 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B761D2657180016F6E1 /* PlistManager.swift */; };
 		A6ED5C401D252AE80044C801 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED5C3F1D252AE80044C801 /* AppDelegate.swift */; };
 		A6ED5C421D252AE80044C801 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED5C411D252AE80044C801 /* PlacesViewController.swift */; };
 		A6ED5C451D252AE80044C801 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6ED5C431D252AE80044C801 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		A67C4B6E1D2569C00016F6E1 /* DetailedReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedReportViewController.swift; sourceTree = "<group>"; };
 		A67C4B711D2572090016F6E1 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		A67C4B741D257E680016F6E1 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		A67C4B761D2657180016F6E1 /* PlistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
 		A6ED5C3C1D252AE80044C801 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6ED5C3F1D252AE80044C801 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6ED5C411D252AE80044C801 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		A67C4B781D26571B0016F6E1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A67C4B711D2572090016F6E1 /* DownloadManager.swift */,
+				A67C4B761D2657180016F6E1 /* PlistManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		A6ED5C331D252AE80044C801 = {
 			isa = PBXGroup;
 			children = (
@@ -82,14 +93,14 @@
 		A6ED5C3E1D252AE80044C801 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				A67C4B731D257E5C0016F6E1 /* Model */,
 				A6ED5C7A1D254D400044C801 /* Supporting Files */,
+				A67C4B731D257E5C0016F6E1 /* Model */,
 				A67C4B701D2569C30016F6E1 /* DetailedReport */,
 				A6ED5C7D1D254DEC0044C801 /* PlacesTableView */,
 				A6ED5C431D252AE80044C801 /* Main.storyboard */,
 				A6ED5C461D252AE80044C801 /* WeatherApp.xcdatamodeld */,
 				A6ED5C541D252B190044C801 /* Places.plist */,
-				A67C4B711D2572090016F6E1 /* DownloadManager.swift */,
+				A67C4B781D26571B0016F6E1 /* Managers */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 				A67C4B721D2572090016F6E1 /* DownloadManager.swift in Sources */,
 				A67C4B6F1D2569C00016F6E1 /* DetailedReportViewController.swift in Sources */,
 				A6ED5C421D252AE80044C801 /* PlacesViewController.swift in Sources */,
+				A67C4B771D2657180016F6E1 /* PlistManager.swift in Sources */,
 				A6ED5C401D252AE80044C801 /* AppDelegate.swift in Sources */,
 				A67C4B751D257E680016F6E1 /* Place.swift in Sources */,
 				A6ED5C7C1D254DE30044C801 /* PlaceTableViewCell.swift in Sources */,
