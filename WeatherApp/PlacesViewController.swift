@@ -32,7 +32,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Fetch data
     func populateTableView() {
         let places = plistManager.getAllPlaces()
-        
+        downloadManager.fetchDataForPlaces(places)
         
         data = downloadManager.getData()
     }

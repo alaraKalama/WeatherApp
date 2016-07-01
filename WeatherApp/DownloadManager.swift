@@ -19,6 +19,10 @@ class DownloadManager {
         return data
     }
     
+    func fetchDataForPlaces(places: [Place]) {
+        
+    }
+    
     var data: Dictionary<String, Dictionary<String, String>> = [
         "London" : [
             "temperature":"23",
