@@ -28,7 +28,7 @@
 		A67C4B741D257E680016F6E1 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A67C4B761D2657180016F6E1 /* PlistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
 		A6C0F9B71D2A467200074B72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		A6ED5C3C1D252AE80044C801 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6ED5C3C1D252AE80044C801 /* SketchyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6ED5C3F1D252AE80044C801 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6ED5C411D252AE80044C801 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		A6ED5C441D252AE80044C801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		A6ED5C3D1D252AE80044C801 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A6ED5C3C1D252AE80044C801 /* WeatherApp.app */,
+				A6ED5C3C1D252AE80044C801 /* SketchyWeather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,7 +146,7 @@
 			);
 			name = WeatherApp;
 			productName = WeatherApp;
-			productReference = A6ED5C3C1D252AE80044C801 /* WeatherApp.app */;
+			productReference = A6ED5C3C1D252AE80044C801 /* SketchyWeather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -326,7 +326,7 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evori.bianca.WeatherApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SketchyWeather;
 			};
 			name = Debug;
 		};
@@ -337,7 +337,7 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evori.bianca.WeatherApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SketchyWeather;
 			};
 			name = Release;
 		};

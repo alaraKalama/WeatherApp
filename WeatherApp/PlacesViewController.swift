@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate{
+class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, DownloadManagerDelegate {
     
     let textCellIdentifier = "placeCell"
     
@@ -18,18 +18,16 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     let plistManager = PlistManager.sharedInstance
     
     var data : Dictionary<String, Dictionary<String, String>>!
+    var places = [Place]()
+    
     var currentLocation: CLLocation!
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
+        self.startLocationManager()
+        downloadManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         self.populateTableView()
@@ -38,9 +36,15 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Fetch data
     
     func populateTableView() {
-        let places = plistManager.getAllPlaces()
+        places = plistManager.getAllPlaces()
         downloadManager.fetchDataForPlaces(places)
         data = downloadManager.getData()
+    }
+    
+    // MARK: - Download Manager Delegate
+    
+    func didFetchLocationForecastData(sender: DownloadManager) {
+        //do stuff
     }
     
     // MARK: - Location functions
@@ -57,6 +61,9 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         if newLocation.coordinate.latitude != oldLocation.coordinate.latitude ||
             newLocation.coordinate.longitude != oldLocation.coordinate.longitude {
             self.currentLocation = newLocation
+            let myPLace = Place()
+            myPLace.latitude = "\(currentLocation.coordinate.latitude)"
+            myPLace.longitute = "\(currentLocation.coordinate.longitude)"
             self.downloadManager.getDataForLocation(currentLocation)
         } else {
             self.currentLocation = oldLocation

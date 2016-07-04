@@ -9,10 +9,16 @@
 import Foundation
 import CoreLocation
 
+protocol DownloadManagerDelegate: class {
+    func didFetchLocationForecastData(sender: DownloadManager)
+}
+
 class DownloadManager {
     
     let myAPIKey = "65865cb85a8f5c9962bf4f514bd1a12d"
     let forecastCall = "https://api.forecast.io/forecast/"
+    
+    var delegate: DownloadManagerDelegate?
     
     static let sharedInstance = DownloadManager()
     private init() {}
@@ -25,7 +31,7 @@ class DownloadManager {
         
     }
     
-    func getDataForLocation(location: CLLocation)  {
+    func getDataForLocation(location: CLLocation) {
         let latitudeString = "\(location.coordinate.latitude)"
         let longitudeString = "\(location.coordinate.longitude)"
         let URLString = forecastCall + myAPIKey + "/" + latitudeString + "," + longitudeString
@@ -54,14 +60,14 @@ class DownloadManager {
                 }
                 print(myDATA.description)
                 
+                
             } catch {
                 print("error trying to convert to JSON")
                 return
             }
         })
+        
         task.resume()
-
-
     }
     
     var data: Dictionary<String, Dictionary<String, String>> = [
