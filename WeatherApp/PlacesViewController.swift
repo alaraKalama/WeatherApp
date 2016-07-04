@@ -18,6 +18,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     let plistManager = PlistManager.sharedInstance
     
     var data : Dictionary<String, Dictionary<String, String>>!
+    var currentLocation: CLLocation!
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,7 +26,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
@@ -35,6 +36,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK: - Fetch data
+    
     func populateTableView() {
         let places = plistManager.getAllPlaces()
         downloadManager.fetchDataForPlaces(places)
@@ -43,9 +45,23 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK: - Location functions
     
+    func startLocationManager() {
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+    }
+    
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        print(newLocation.coordinate.latitude)
-        print(newLocation.coordinate.longitude)
+        
+        if newLocation.coordinate.latitude != oldLocation.coordinate.latitude ||
+            newLocation.coordinate.longitude != oldLocation.coordinate.longitude {
+            self.currentLocation = newLocation
+            self.downloadManager.getDataForLocation(currentLocation)
+        } else {
+            self.currentLocation = oldLocation
+        }
+        
     }
     // MARK: - Table View Data Source
     
