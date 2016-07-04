@@ -58,8 +58,6 @@ class DownloadManager {
                 print("error trying to convert to JSON")
                 return
             }
-          
-            
         })
         task.resume()
 
