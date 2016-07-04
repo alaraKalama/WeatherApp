@@ -16,8 +16,19 @@ class Place {
     var currentTemperature: Int!
     var currentTime: NSDate!
     
-    static func getPlaceFromDictionary(dict: NSDictionary) -> Place {
-        let place = Place()
-        return place
+    static func getPlacesFromDictionary(dict: NSDictionary) -> [Place] {
+        var places = [Place]()
+        
+        for dictPlace in dict.enumerate() {
+            let place = Place()
+            place.name = dictPlace.element.key as! String
+            let placeProperties = dictPlace.element.value
+            if let propsDict: Dictionary<String, String> = placeProperties as? Dictionary<String, String> {
+                place.latitude = propsDict["latitude"]
+                place.longitute = propsDict["longitude"]
+            }
+            places.append(place)
+        }
+        return places
     }
 }

@@ -25,8 +25,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         self.populateTableView()
-        
-        
     }
     
     // MARK: - Fetch data
