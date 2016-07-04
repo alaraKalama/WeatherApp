@@ -2,19 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Tokyo</key>
+	<dict>
+		<key>longitude</key>
+		<string>139.7753269</string>
+		<key>latitude</key>
+		<string>35.7020691
+35.7020691
+</string>
+	</dict>
 	<key>London</key>
 	<dict>
 		<key>longitude</key>
-		<string>7587567846758</string>
+		<string>-0.1337
+-0.1337
+-0.1337
+</string>
 		<key>latitude</key>
-		<string>87687578687687</string>
-	</dict>
-	<key>Paris</key>
-	<dict>
-		<key>longitude</key>
-		<string>875875876875</string>
-		<key>latitude</key>
-		<string>87687587587587</string>
+		<string>51.50998</string>
 	</dict>
 </dict>
 </plist>

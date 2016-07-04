@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
-class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate{
     
     let textCellIdentifier = "placeCell"
     
+    var locationManager = CLLocationManager()
     let downloadManager = DownloadManager.sharedInstance
-    
     let plistManager = PlistManager.sharedInstance
     
     var data : Dictionary<String, Dictionary<String, String>>!
@@ -22,6 +23,12 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         tableView.delegate = self
         tableView.dataSource = self
         self.populateTableView()
@@ -31,11 +38,15 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     func populateTableView() {
         let places = plistManager.getAllPlaces()
         downloadManager.fetchDataForPlaces(places)
-        
         data = downloadManager.getData()
     }
     
+    // MARK: - Location functions
     
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        print(newLocation.coordinate.latitude)
+        print(newLocation.coordinate.longitude)
+    }
     // MARK: - Table View Data Source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
