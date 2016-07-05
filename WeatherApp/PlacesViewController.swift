@@ -62,8 +62,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         if let name = places[row].name {
             cell.placeLabel.text = name
         }
-        
-        
         return cell
     }
     
@@ -79,11 +77,12 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
+        //self.locationManager.startUpdatingLocation()
+        //self.locationManager.stopUpdatingHeading()
+        self.locationManager.startMonitoringVisits()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             if newLocation.coordinate.latitude != oldLocation.coordinate.latitude ||

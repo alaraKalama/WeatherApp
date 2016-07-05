@@ -28,7 +28,7 @@ class DownloadManager {
     
     func fetchDataForPlaces(places: [Place]) {
         for place in places {
-            
+            self.getDataForPlace(place)
         }
     }
     
@@ -60,7 +60,7 @@ class DownloadManager {
                 }
                 print(myDATA.description)
                 self.locationData = myDATA
-                self.delegate?.didFetchLocationForecastData(self)
+                //self.delegate?.didFetchLocationForecastData(self)
                 
             } catch {
                 print("error trying to convert to JSON")

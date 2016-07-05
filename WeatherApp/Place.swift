@@ -24,7 +24,7 @@ class Place {
         
         for dictPlace in dict.enumerate() {
             let place = Place()
-            place.name = dictPlace.element.key as! String
+            place.name = dictPlace.element.key as? String
             let placeProperties = dictPlace.element.value
             if let propsDict: Dictionary<String, String> = placeProperties as? Dictionary<String, String> {
                 place.latitude = propsDict["latitude"]

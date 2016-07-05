@@ -7,17 +7,12 @@
 		<key>longitude</key>
 		<string>139.7753269</string>
 		<key>latitude</key>
-		<string>35.7020691
-35.7020691
-</string>
+		<string>35.7020691</string>
 	</dict>
 	<key>London</key>
 	<dict>
 		<key>longitude</key>
-		<string>-0.1337
--0.1337
--0.1337
-</string>
+		<string>-0.1337</string>
 		<key>latitude</key>
 		<string>51.50998</string>
 	</dict>
