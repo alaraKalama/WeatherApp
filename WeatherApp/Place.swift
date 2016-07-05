@@ -13,6 +13,7 @@ class Place {
     var name: String!
     var latitude: String!
     var longitute: String!
+    var isCurrentLocation: Bool! = false
     var currentTemperature: Int!
     var currentTime: NSDate!
     

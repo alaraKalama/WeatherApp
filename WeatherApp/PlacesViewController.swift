@@ -43,7 +43,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.data = downloadManager.getData()
     }
     
-    
         // MARK: - Table View Data Source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -51,15 +50,15 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return places.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! PlaceTableViewCell
         
         let row = indexPath.row
-        let key = Array(data.keys)[row]
-        cell.placeLabel.text = key
+        //let key = Array(data.keys)[row]
+        cell.placeLabel.text = places[row].name
         
         return cell
     }
@@ -87,11 +86,34 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
             let myPLace = Place()
             myPLace.latitude = "\(currentLocation.coordinate.latitude)"
             myPLace.longitute = "\(currentLocation.coordinate.longitude)"
+            self.reverseGeolocodeCurrentLocation(currentLocation, place: myPLace)
             self.downloadManager.getDataForLocation(currentLocation)
+            
         } else {
             self.currentLocation = oldLocation
         }
         
+    }
+    
+    func reverseGeolocodeCurrentLocation(location: CLLocation, place: Place) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location, completionHandler: {(stuff, error) -> Void in
+            if (error != nil) {
+                NSLog("reverse geocode fail")
+                return
+            }
+            
+            if stuff?.count > 0 {
+                let placemark = CLPlacemark(placemark: stuff![0] as CLPlacemark)
+                place.name = placemark.addressDictionary?["City"] as! String
+                place.isCurrentLocation = true
+                self.places.insert(place, atIndex: 0)
+                self.tableView?.reloadData()
+            } else {
+                NSLog("No placemark!")
+                return
+            }
+        })
     }
     
     // MARK: - Download Manager Delegate
