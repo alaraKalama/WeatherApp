@@ -33,6 +33,7 @@ class DownloadManager {
     }
     
     func getDataWithLatitudeAndLongitude(latitudeString: String, longitudeString: String) {
+        //TODO: move the logic in the func below
         
         let URLString = forecastCall + myAPIKey + "/" + latitudeString + "," + longitudeString
         guard let url = NSURL(string: URLString) else {
@@ -72,15 +73,18 @@ class DownloadManager {
     }
     
     func getDataForPlace(place: Place) {
+        //TODO: Data should be fetched here where we have the place object - this should be the main func for getting data
         if let latitude = place.latitude {
             if let longitude = place.longitute {
                 self.getDataWithLatitudeAndLongitude(latitude, longitudeString: longitude)
+                //Place.getPlaceFromJSON(self.locationData!, place: place)
             }
         }
         
     }
     
     func getDataForLocation(location: CLLocation) {
+        //This is not called anywhere! Do I need it?
         let latitudeString = "\(location.coordinate.latitude)"
         let longitudeString = "\(location.coordinate.longitude)"
         self.getDataWithLatitudeAndLongitude(latitudeString, longitudeString: longitudeString)

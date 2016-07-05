@@ -35,9 +35,7 @@ class Place {
         return places
     }
     
-    static func getPlaceFromJSON(data: [String: AnyObject]) -> Place {
-        let place = Place()
+    static func getPlaceFromJSON(data: [String: AnyObject], place: Place) {
         
-        return place
     }
 }

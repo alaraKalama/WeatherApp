@@ -77,7 +77,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         self.locationManager.requestWhenInUseAuthorization()
-        //self.locationManager.startUpdatingLocation()
+        self.locationManager.startUpdatingLocation()
         //self.locationManager.stopUpdatingHeading()
         self.locationManager.startMonitoringVisits()
     }
