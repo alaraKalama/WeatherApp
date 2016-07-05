@@ -26,6 +26,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Lifecycle methods 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.startLocationManager()
@@ -40,7 +42,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     func populateTableView() {
         self.places = plistManager.getAllPlaces()
         self.downloadManager.fetchDataForPlaces(places)
-        self.data = downloadManager.getData()
     }
     
         // MARK: - Table View Data Source
@@ -58,7 +59,10 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let row = indexPath.row
         //let key = Array(data.keys)[row]
-        cell.placeLabel.text = places[row].name
+        if let name = places[row].name {
+            cell.placeLabel.text = name
+        }
+        
         
         return cell
     }
@@ -80,19 +84,28 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         
-        if newLocation.coordinate.latitude != oldLocation.coordinate.latitude ||
-            newLocation.coordinate.longitude != oldLocation.coordinate.longitude {
-            self.currentLocation = newLocation
-            let myPLace = Place()
-            myPLace.latitude = "\(currentLocation.coordinate.latitude)"
-            myPLace.longitute = "\(currentLocation.coordinate.longitude)"
-            self.reverseGeolocodeCurrentLocation(currentLocation, place: myPLace)
-            self.downloadManager.getDataForLocation(currentLocation)
-            
-        } else {
-            self.currentLocation = oldLocation
-        }
         
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            if newLocation.coordinate.latitude != oldLocation.coordinate.latitude ||
+                newLocation.coordinate.longitude != oldLocation.coordinate.longitude {
+                self.currentLocation = newLocation
+                let place = Place()
+                place.latitude = "\(self.currentLocation.coordinate.latitude)"
+                place.longitute = "\(self.currentLocation.coordinate.longitude)"
+                self.reverseGeolocodeCurrentLocation(self.currentLocation, place: place)
+                for (index, place) in self.places.enumerate() {
+                    if place.isCurrentLocation == true {
+                        place.isCurrentLocation = false
+                        self.places.removeAtIndex(index)
+                    }
+                }
+                self.places.insert(place, atIndex: 0)
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView?.reloadData()
+            })
+        })
     }
     
     func reverseGeolocodeCurrentLocation(location: CLLocation, place: Place) {
@@ -102,13 +115,10 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
                 NSLog("reverse geocode fail")
                 return
             }
-            
             if stuff?.count > 0 {
                 let placemark = CLPlacemark(placemark: stuff![0] as CLPlacemark)
-                place.name = placemark.addressDictionary?["City"] as! String
+                place.name = placemark.addressDictionary?["City"] as? String
                 place.isCurrentLocation = true
-                self.places.insert(place, atIndex: 0)
-                self.tableView?.reloadData()
             } else {
                 NSLog("No placemark!")
                 return

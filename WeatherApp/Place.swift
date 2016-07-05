@@ -10,11 +10,13 @@ import Foundation
 
 class Place {
     
-    var name: String!
-    var latitude: String!
-    var longitute: String!
+    var name: String?
+    var latitude: String?
+    var longitute: String?
     var isCurrentLocation: Bool! = false
-    var currentTemperature: Int!
+    var currentTemperature: Int?
+    var icon: String?
+    
     var currentTime: NSDate!
     
     static func getPlacesFromDictionary(dict: NSDictionary) -> [Place] {
@@ -36,8 +38,6 @@ class Place {
     static func getPlaceFromJSON(data: [String: AnyObject]) -> Place {
         let place = Place()
         
-        
-
         return place
     }
 }

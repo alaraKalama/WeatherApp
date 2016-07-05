@@ -26,17 +26,14 @@ class DownloadManager {
         
     }
     
-    func getData() -> Dictionary<String, Dictionary<String, String>> {
-        return data
-    }
-    
     func fetchDataForPlaces(places: [Place]) {
-        
+        for place in places {
+            
+        }
     }
     
-    func getDataForLocation(location: CLLocation) {
-        let latitudeString = "\(location.coordinate.latitude)"
-        let longitudeString = "\(location.coordinate.longitude)"
+    func getDataWithLatitudeAndLongitude(latitudeString: String, longitudeString: String) {
+        
         let URLString = forecastCall + myAPIKey + "/" + latitudeString + "," + longitudeString
         guard let url = NSURL(string: URLString) else {
             NSLog("Error: Cannot create url from string")
@@ -64,7 +61,7 @@ class DownloadManager {
                 print(myDATA.description)
                 self.locationData = myDATA
                 self.delegate?.didFetchLocationForecastData(self)
-          
+                
             } catch {
                 print("error trying to convert to JSON")
                 return
@@ -74,19 +71,19 @@ class DownloadManager {
         task.resume()
     }
     
-    var data: Dictionary<String, Dictionary<String, String>> = [
-        "London" : [
-            "temperature":"23",
-            "time":"10:54"
-        ],
-        "Paris" : [
-            "temperature":"28",
-            "time":"11:54"
-        ],
-        "Sofia" : [
-            "temperature":"29",
-            "time":"12:54"
-        ],
-    ]
-
+    func getDataForPlace(place: Place) {
+        if let latitude = place.latitude {
+            if let longitude = place.longitute {
+                self.getDataWithLatitudeAndLongitude(latitude, longitudeString: longitude)
+            }
+        }
+        
+    }
+    
+    func getDataForLocation(location: CLLocation) {
+        let latitudeString = "\(location.coordinate.latitude)"
+        let longitudeString = "\(location.coordinate.longitude)"
+        self.getDataWithLatitudeAndLongitude(latitudeString, longitudeString: longitudeString)
+        
+    }
 }
