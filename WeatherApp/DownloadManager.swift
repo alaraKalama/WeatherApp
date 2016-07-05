@@ -19,9 +19,12 @@ class DownloadManager {
     let forecastCall = "https://api.forecast.io/forecast/"
     
     var delegate: DownloadManagerDelegate?
+    var locationData: [String:AnyObject]?
     
     static let sharedInstance = DownloadManager()
-    private init() {}
+    private init() {
+        
+    }
     
     func getData() -> Dictionary<String, Dictionary<String, String>> {
         return data
@@ -59,8 +62,9 @@ class DownloadManager {
                     return
                 }
                 print(myDATA.description)
-                
-                
+                self.locationData = myDATA
+                self.delegate?.didFetchLocationForecastData(self)
+          
             } catch {
                 print("error trying to convert to JSON")
                 return

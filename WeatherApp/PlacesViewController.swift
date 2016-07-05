@@ -20,57 +20,31 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     var data : Dictionary<String, Dictionary<String, String>>!
     var places = [Place]()
     
+    //do a [string:anyobject] data object, take its value from the delegate, than parse the json in the static place func
     var currentLocation: CLLocation!
+    var locationData: [String : AnyObject]?
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.startLocationManager()
-        downloadManager.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.downloadManager.delegate = self
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.populateTableView()
     }
     
     // MARK: - Fetch data
     
     func populateTableView() {
-        places = plistManager.getAllPlaces()
-        downloadManager.fetchDataForPlaces(places)
-        data = downloadManager.getData()
+        self.places = plistManager.getAllPlaces()
+        self.downloadManager.fetchDataForPlaces(places)
+        self.data = downloadManager.getData()
     }
     
-    // MARK: - Download Manager Delegate
     
-    func didFetchLocationForecastData(sender: DownloadManager) {
-        //do stuff
-    }
-    
-    // MARK: - Location functions
-    
-    func startLocationManager() {
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        
-        if newLocation.coordinate.latitude != oldLocation.coordinate.latitude ||
-            newLocation.coordinate.longitude != oldLocation.coordinate.longitude {
-            self.currentLocation = newLocation
-            let myPLace = Place()
-            myPLace.latitude = "\(currentLocation.coordinate.latitude)"
-            myPLace.longitute = "\(currentLocation.coordinate.longitude)"
-            self.downloadManager.getDataForLocation(currentLocation)
-        } else {
-            self.currentLocation = oldLocation
-        }
-        
-    }
-    // MARK: - Table View Data Source
+        // MARK: - Table View Data Source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -95,5 +69,38 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    // MARK: - Location Manager Delegate
+    
+    func startLocationManager() {
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        
+        if newLocation.coordinate.latitude != oldLocation.coordinate.latitude ||
+            newLocation.coordinate.longitude != oldLocation.coordinate.longitude {
+            self.currentLocation = newLocation
+            let myPLace = Place()
+            myPLace.latitude = "\(currentLocation.coordinate.latitude)"
+            myPLace.longitute = "\(currentLocation.coordinate.longitude)"
+            self.downloadManager.getDataForLocation(currentLocation)
+        } else {
+            self.currentLocation = oldLocation
+        }
+        
+    }
+    
+    // MARK: - Download Manager Delegate
+    
+    func didFetchLocationForecastData(sender: DownloadManager) {
+        self.locationData = sender.locationData
+        // fetch json
+        print("didFetchLocationForecastData was called")
+    }
+
 }
 
