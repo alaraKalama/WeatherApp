@@ -11,12 +11,11 @@ import CoreLocation
 
 protocol DownloadManagerDelegate: class {
 
+    //TODO: Add sender as param
     func didFetchDataForPlaceAtIndex(index: NSInteger)
 }
 
 class DownloadManager {
-    
-    
     
     var delegate: DownloadManagerDelegate?
     var locationData: [String:AnyObject]?
