@@ -14,6 +14,7 @@ class PlaceTableViewCell: UITableViewCell {
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var timeNowLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var summary: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,13 +38,22 @@ class PlaceTableViewCell: UITableViewCell {
             cell.temperatureLabel.text = "\(temp)"
         }
         
+        if let icon = place.icon{
+            cell.iconImageView.image = UIImage(named: icon)
+        }
+        
+        if let summary = place.summary {
+            cell.summary.text = summary
+        }
+        
         //TODO: not acurate??
         if let date = place.currentTime {
             let dayTimePeriodFormatter = NSDateFormatter()
-            dayTimePeriodFormatter.dateFormat = "HH:MM"
+            dayTimePeriodFormatter.dateFormat = Constants.dayHoursMinutes
             let dateString = dayTimePeriodFormatter.stringFromDate(date)
             cell.timeNowLabel.text = dateString
         }
+
         
     }
 

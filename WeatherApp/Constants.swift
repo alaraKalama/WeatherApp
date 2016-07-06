@@ -16,6 +16,7 @@ class Constants {
     static let plistFileName = "Places"
     static let plist = "plist"
     
+    static let timezone = "timezone"
     static let temperature = "temperature"
     static let feelsLike = "apparentTemperature"
     static let currently = "currently"
@@ -39,5 +40,22 @@ class Constants {
     static let textCellIdentifier = "placeCell"
     
     static let City = "City"
+    
+    static let dayHoursMinutes = "EEEE, HH:MM"
+    
+    static let clear_day = "clear-day"
+    static let clear_night = "clear-night"
+    static let cloudy_day = "cloudy-day"
+    static let cloudy_night = "cloudy-night"
+    static let fog = "fog"
+    static let partly_cloudy_day = "partly-cloudy-day"
+    static let partly_cloudy_night = "partly-cloudy-night"
+    static let rain = "rain"
+    static let sleet = "sleet"
+    static let snow = "snow"
+    static let wind = "wind"
+
+
+
     
 }

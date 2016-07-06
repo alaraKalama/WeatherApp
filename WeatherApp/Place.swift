@@ -23,6 +23,7 @@ class Place {
     var currentTemperature: Int?
     var icon: String?
     var currentTime: NSDate?
+    var timezone: String?
     var summary: String?
     
     static func getPlacesFromDictionary(dict: NSDictionary) -> [Place] {
@@ -59,7 +60,13 @@ class Place {
     //windSpeed = "10.65";
     
     static func getPlaceFromJSON(json: [String: AnyObject], place: Place) {
+        if let timezone = json[Constants.timezone] as? String {
+            place.timezone = timezone
+            var formatter = NSDateFormatter()
+            //formatter.timeZone = NSTimeZone.with
+        }
         if let currentWather = json[Constants.currently] as? NSDictionary {
+            NSLog(place.name!)
             print(currentWather)
             let temperatureInFahrenheit = currentWather[Constants.temperature] as? Int
             let temperatureInCelsius = temperatureManager.FahrenheitToCelsius(temperatureInFahrenheit!)
@@ -70,6 +77,7 @@ class Place {
             if let summary = currentWather[Constants.summary] as? String {
                 place.summary = summary
             }
+            
             if let secondsSince1970 = currentWather[Constants.time] as? NSTimeInterval {
                 let date = NSDate(timeIntervalSince1970: secondsSince1970)
                 place.currentTime = date

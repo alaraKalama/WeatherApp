@@ -44,17 +44,23 @@
                                                                         <constraint firstAttribute="width" constant="90" id="VtA-sw-7YY"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cqa-Qm-XmX">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="cqa-Qm-XmX">
                                                                     <rect key="frame" x="106" y="6" width="385" height="85"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ1-ye-4t7">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="73" height="42"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Place" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ1-ye-4t7">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="73" height="43"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time now" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEa-6l-qjp">
-                                                                            <rect key="frame" x="0.0" y="44" width="59" height="41"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="summary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEa-6l-qjp">
+                                                                            <rect key="frame" x="0.0" y="44" width="60" height="20"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="time now" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCw-2X-7Yb">
+                                                                            <rect key="frame" x="0.0" y="65" width="59" height="20"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -102,8 +108,9 @@
                                         <connections>
                                             <outlet property="iconImageView" destination="8fn-AJ-kBz" id="pZh-PP-Q69"/>
                                             <outlet property="placeLabel" destination="ZJ1-ye-4t7" id="vMG-yi-etc"/>
+                                            <outlet property="summary" destination="QEa-6l-qjp" id="ac0-2a-3OB"/>
                                             <outlet property="temperatureLabel" destination="qfs-ew-tcN" id="eae-zv-C78"/>
-                                            <outlet property="timeNowLabel" destination="QEa-6l-qjp" id="d1A-BQ-ZT2"/>
+                                            <outlet property="timeNowLabel" destination="DCw-2X-7Yb" id="8HF-Hl-I2p"/>
                                             <segue destination="g3W-w2-Ddb" kind="showDetail" action="showViewController:sender:" id="gBo-oP-Ovo"/>
                                         </connections>
                                     </tableViewCell>
