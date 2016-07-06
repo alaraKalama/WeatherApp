@@ -8,10 +8,6 @@
 
 import Foundation
 
-let plistFileName: String = "Places"
-let plist:String = "plist"
-let latitude: String = "latitude"
-let longitude: String = "longitude"
 
 struct Plist {
     
@@ -23,14 +19,14 @@ struct Plist {
     let name:String
     
     var sourcePath:String? {
-        guard let path = NSBundle.mainBundle().pathForResource(name, ofType: "plist") else { return .None }
+        guard let path = NSBundle.mainBundle().pathForResource(name, ofType: Constants.plist) else { return .None }
         return path
     }
     
     var destPath:String? {
         guard sourcePath != .None else { return .None }
         let dir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        return (dir as NSString).stringByAppendingPathComponent("\(name).plist")
+        return (dir as NSString).stringByAppendingPathComponent("\(name).\(Constants.plist)")
     }
     
     init?(name:String) {
@@ -61,7 +57,7 @@ class PlistManager {
     private init() {}
     
     func startPlistManager() {
-        if let _ = Plist(name: plistFileName) {
+        if let _ = Plist(name: Constants.plistFileName) {
             print("[PlistManager] PlistManager started")
         }
     }
@@ -71,7 +67,7 @@ class PlistManager {
     func getAllPlaces() -> [Place] {
         var places: [Place] = []
         var placesDict: NSDictionary?
-        if let path = NSBundle.mainBundle().pathForResource(plistFileName, ofType: plist) {
+        if let path = NSBundle.mainBundle().pathForResource(Constants.plistFileName, ofType: Constants.plist) {
             placesDict = NSDictionary(contentsOfFile: path)
         }
         if let dict = placesDict {

@@ -33,6 +33,18 @@ class PlaceTableViewCell: UITableViewCell {
             cell.placeLabel.text = ""
         }
         
+        if let temp = place.currentTemperature {
+            cell.temperatureLabel.text = "\(temp)"
+        }
+        
+        //TODO: not acurate??
+        if let date = place.currentTime {
+            let dayTimePeriodFormatter = NSDateFormatter()
+            dayTimePeriodFormatter.dateFormat = "HH:MM"
+            let dateString = dayTimePeriodFormatter.stringFromDate(date)
+            cell.timeNowLabel.text = dateString
+        }
+        
     }
 
 }

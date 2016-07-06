@@ -16,8 +16,7 @@ protocol DownloadManagerDelegate: class {
 
 class DownloadManager {
     
-    let myAPIKey = "65865cb85a8f5c9962bf4f514bd1a12d"
-    let forecastCall = "https://api.forecast.io/forecast/"
+    
     
     var delegate: DownloadManagerDelegate?
     var locationData: [String:AnyObject]?
@@ -38,7 +37,7 @@ class DownloadManager {
         if let latitude = place.latitude {
             if let longitude = place.longitude {
                 
-                let URLString = forecastCall + myAPIKey + "/" + latitude + "," + longitude
+                let URLString = Constants.forecastCall + Constants.myAPIKey + "/" + latitude + "," + longitude
                 
                 guard let url = NSURL(string: URLString) else {
                     NSLog("Error: Cannot create url from string")
@@ -61,10 +60,10 @@ class DownloadManager {
                         return
                     }
                     do {
-                        guard let myDATA = try NSJSONSerialization.JSONObjectWithData(responseData, options: []) as? [String: AnyObject] else {
+                        guard let json = try NSJSONSerialization.JSONObjectWithData(responseData, options: []) as? [String: AnyObject] else {
                             return
                         }
-                        Place.getPlaceFromJSON(myDATA, place: place)
+                        Place.getPlaceFromJSON(json, place: place)
                         self.delegate?.didFetchDataForPlaceAtIndex(atIndex)
                         
                     } catch {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A60F2F7E1D2CF68700CC8215 /* TemperatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F2F7D1D2CF68700CC8215 /* TemperatureManager.swift */; };
+		A60F2F801D2D157300CC8215 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F2F7F1D2D157300CC8215 /* Constants.swift */; };
 		A67C4B6F1D2569C00016F6E1 /* DetailedReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B6E1D2569C00016F6E1 /* DetailedReportViewController.swift */; };
 		A67C4B721D2572090016F6E1 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B711D2572090016F6E1 /* DownloadManager.swift */; };
 		A67C4B751D257E680016F6E1 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B741D257E680016F6E1 /* Place.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A60F2F7D1D2CF68700CC8215 /* TemperatureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureManager.swift; sourceTree = "<group>"; };
+		A60F2F7F1D2D157300CC8215 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A67C4B6E1D2569C00016F6E1 /* DetailedReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedReportViewController.swift; sourceTree = "<group>"; };
 		A67C4B711D2572090016F6E1 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		A67C4B741D257E680016F6E1 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 			children = (
 				A67C4B711D2572090016F6E1 /* DownloadManager.swift */,
 				A67C4B761D2657180016F6E1 /* PlistManager.swift */,
+				A60F2F7D1D2CF68700CC8215 /* TemperatureManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				A6ED5C491D252AE80044C801 /* Assets.xcassets */,
 				A6ED5C4B1D252AE80044C801 /* LaunchScreen.storyboard */,
 				A6ED5C4E1D252AE80044C801 /* Info.plist */,
+				A60F2F7F1D2D157300CC8215 /* Constants.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -204,7 +210,9 @@
 				A6ED5C481D252AE80044C801 /* WeatherApp.xcdatamodeld in Sources */,
 				A67C4B721D2572090016F6E1 /* DownloadManager.swift in Sources */,
 				A67C4B6F1D2569C00016F6E1 /* DetailedReportViewController.swift in Sources */,
+				A60F2F801D2D157300CC8215 /* Constants.swift in Sources */,
 				A6ED5C421D252AE80044C801 /* PlacesViewController.swift in Sources */,
+				A60F2F7E1D2CF68700CC8215 /* TemperatureManager.swift in Sources */,
 				A67C4B771D2657180016F6E1 /* PlistManager.swift in Sources */,
 				A6ED5C401D252AE80044C801 /* AppDelegate.swift in Sources */,
 				A67C4B751D257E680016F6E1 /* Place.swift in Sources */,

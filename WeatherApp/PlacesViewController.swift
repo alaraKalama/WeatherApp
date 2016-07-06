@@ -11,7 +11,7 @@ import CoreLocation
 
 class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, DownloadManagerDelegate {
     
-    let textCellIdentifier = "placeCell"
+    
     
     var locationManager = CLLocationManager()
     let downloadManager = DownloadManager.sharedInstance
@@ -40,7 +40,9 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Fetch data
     
     func populateTableView() {
-        self.places = plistManager.getAllPlaces()
+        if places.count <= 0 {
+            self.places = plistManager.getAllPlaces()
+        }
         self.downloadManager.fetchDataForPlaces(places)
     }
     
@@ -55,7 +57,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! PlaceTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textCellIdentifier, forIndexPath: indexPath) as! PlaceTableViewCell
         let row = indexPath.row
         let place = places[row]
         PlaceTableViewCell.createFromPLace(place, cell: cell)
@@ -89,7 +91,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
                 let place = Place()
                 place.latitude = "\(self.currentLocation.coordinate.latitude)"
                 place.longitude = "\(self.currentLocation.coordinate.longitude)"
-//                self.reverseGeolocodeCurrentLocation(self.currentLocation, place: place)
                 
                 self.reverseGeolocodeCurrentLocation(self.currentLocation, place: place, completion: { 
                     
@@ -100,10 +101,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
                         }
                     }
                     self.places.insert(place, atIndex: 0)
-
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.tableView?.reloadData()
-                    })
+                    self.populateTableView()
                 })
             }
             
@@ -120,7 +118,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
             }
             if stuff?.count > 0 {
                 let placemark = CLPlacemark(placemark: stuff![0] as CLPlacemark)
-                place.name = placemark.addressDictionary?["City"] as? String
+                place.name = placemark.addressDictionary?[Constants.City] as? String
                 place.isCurrentLocation = true
             } else {
                 NSLog("No placemark!")
@@ -133,7 +131,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Download Manager Delegate
     
     func didFetchDataForPlaceAtIndex(atIndex: NSInteger) {
-        NSLog("didFetchDataForPlaceAtIndex called for index \(atIndex)")
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView?.reloadData()
         })
