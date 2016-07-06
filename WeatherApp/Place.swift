@@ -12,7 +12,7 @@ class Place {
     
     var name: String?
     var latitude: String?
-    var longitute: String?
+    var longitude: String?
     var isCurrentLocation: Bool! = false
     var currentTemperature: Int?
     var icon: String?
@@ -28,7 +28,7 @@ class Place {
             let placeProperties = dictPlace.element.value
             if let propsDict: Dictionary<String, String> = placeProperties as? Dictionary<String, String> {
                 place.latitude = propsDict["latitude"]
-                place.longitute = propsDict["longitude"]
+                place.longitude = propsDict["longitude"]
             }
             places.append(place)
         }
@@ -36,6 +36,6 @@ class Place {
     }
     
     static func getPlaceFromJSON(data: [String: AnyObject], place: Place) {
-        
+        NSLog(data.description)        
     }
 }

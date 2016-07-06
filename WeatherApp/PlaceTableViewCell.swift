@@ -26,7 +26,12 @@ class PlaceTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func createFromPLace(place: Place) {
+    static func createFromPLace(place: Place, cell: PlaceTableViewCell) {
+        if let name = place.name {
+            cell.placeLabel.text = name
+        } else {
+            cell.placeLabel.text = ""
+        }
         
     }
 

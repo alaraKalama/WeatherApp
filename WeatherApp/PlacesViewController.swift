@@ -56,12 +56,10 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! PlaceTableViewCell
-        
         let row = indexPath.row
-        //let key = Array(data.keys)[row]
-        if let name = places[row].name {
-            cell.placeLabel.text = name
-        }
+        let place = places[row]
+        PlaceTableViewCell.createFromPLace(place, cell: cell)
+
         return cell
     }
     
@@ -90,28 +88,34 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
                 self.currentLocation = newLocation
                 let place = Place()
                 place.latitude = "\(self.currentLocation.coordinate.latitude)"
-                place.longitute = "\(self.currentLocation.coordinate.longitude)"
-                self.reverseGeolocodeCurrentLocation(self.currentLocation, place: place)
-                for (index, place) in self.places.enumerate() {
-                    if place.isCurrentLocation == true {
-                        place.isCurrentLocation = false
-                        self.places.removeAtIndex(index)
+                place.longitude = "\(self.currentLocation.coordinate.longitude)"
+//                self.reverseGeolocodeCurrentLocation(self.currentLocation, place: place)
+                
+                self.reverseGeolocodeCurrentLocation(self.currentLocation, place: place, completion: { 
+                    
+                    for (index, place) in self.places.enumerate() {
+                        if place.isCurrentLocation == true {
+                            place.isCurrentLocation = false
+                            self.places.removeAtIndex(index)
+                        }
                     }
-                }
-                self.places.insert(place, atIndex: 0)
+                    self.places.insert(place, atIndex: 0)
+
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView?.reloadData()
+                    })
+                })
             }
             
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView?.reloadData()
-            })
         })
     }
     
-    func reverseGeolocodeCurrentLocation(location: CLLocation, place: Place) {
+    func reverseGeolocodeCurrentLocation(location: CLLocation, place: Place, completion: () -> Void) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location, completionHandler: {(stuff, error) -> Void in
             if (error != nil) {
                 NSLog("reverse geocode fail")
+                completion()
                 return
             }
             if stuff?.count > 0 {
@@ -120,17 +124,19 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
                 place.isCurrentLocation = true
             } else {
                 NSLog("No placemark!")
-                return
             }
+            
+            completion()
         })
     }
     
     // MARK: - Download Manager Delegate
     
-    func didFetchLocationForecastData(sender: DownloadManager) {
-        self.locationData = sender.locationData
-        // fetch json
-        print("didFetchLocationForecastData was called")
+    func didFetchDataForPlaceAtIndex(atIndex: NSInteger) {
+        NSLog("didFetchDataForPlaceAtIndex called for index \(atIndex)")
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView?.reloadData()
+        })
     }
 
 }
