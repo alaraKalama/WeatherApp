@@ -12,7 +12,7 @@ import Foundation
 
 class Place {
     
-    static let temperatureManager = TemperatureManager()
+    static let conversionManager = UnitConversionManager()
     
     // MARK: - properties
     
@@ -21,6 +21,13 @@ class Place {
     var longitude: String?
     var isCurrentLocation: Bool! = false
     var currentTemperature: Int?
+    var feelsLikeTemperature: Int?
+    var humidity: Int?
+    var visibility: Double?
+    var pressure: Double?
+    var precipitation: Int?
+    var precipType: String?
+    var windSpeed: Double?
     var icon: String?
     var currentTime: NSDate?
     var timezone: String?
@@ -62,22 +69,45 @@ class Place {
     static func getPlaceFromJSON(json: [String: AnyObject], place: Place) {
         if let timezone = json[Constants.timezone] as? String {
             place.timezone = timezone
-            var formatter = NSDateFormatter()
-            //formatter.timeZone = NSTimeZone.with
         }
         if let currentWather = json[Constants.currently] as? NSDictionary {
             NSLog(place.name!)
             print(currentWather)
-            let temperatureInFahrenheit = currentWather[Constants.temperature] as? Int
-            let temperatureInCelsius = temperatureManager.FahrenheitToCelsius(temperatureInFahrenheit!)
-            place.currentTemperature = temperatureInCelsius
+            if let temperatureInFahrenheit = currentWather[Constants.temperature] as? Int {
+                //C
+                place.currentTemperature = conversionManager.FahrenheitToCelsius(temperatureInFahrenheit)
+            }
+            if let feelsLike = currentWather[Constants.feelsLike] as? Int {
+                //C
+                place.feelsLikeTemperature = conversionManager.FahrenheitToCelsius(feelsLike)
+            }
+            if let humidity = currentWather[Constants.humidity] as? Double {
+                //%
+                place.humidity = Int(humidity * 100) % 100
+            }
+            if let visibility = currentWather[Constants.visibility] as? Double {
+                //km
+                place.visibility = conversionManager.milesToKilometers(visibility)
+            }
+            if let pressure = currentWather[Constants.pressure] as? Double {
+                //mb
+                place.pressure = pressure
+            }
+            if let precipitation = currentWather[Constants.precipProbability] as? Double {
+                place.precipitation = Int(precipitation * 100) % 100
+            }
+            if let precipType = currentWather[Constants.precipType] as? String {
+                place.precipType = precipType
+            }
+            if let windSpeed = currentWather[Constants.windSpeed] as? Double {
+                place.windSpeed = conversionManager.milesToKilometers(windSpeed)
+            }
             if let icon = currentWather[Constants.icon] as? String {
                 place.icon = icon
             }
             if let summary = currentWather[Constants.summary] as? String {
                 place.summary = summary
             }
-            
             if let secondsSince1970 = currentWather[Constants.time] as? NSTimeInterval {
                 let date = NSDate(timeIntervalSince1970: secondsSince1970)
                 place.currentTime = date

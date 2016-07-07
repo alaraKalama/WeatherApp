@@ -10,7 +10,9 @@ import Foundation
 //T(°C) = (T(°F) - 32) / 1.8
 //T(°F) = T(°C) × 1.8 + 32
 
-class TemperatureManager {
+class UnitConversionManager {
+    
+    // MARK: - Temperature conversions
     
     func FahrenheitToCelsius(fahrenheit: Int) -> Int {
         let celsius = (Double)(fahrenheit - 32) * 0.56
@@ -20,5 +22,34 @@ class TemperatureManager {
     func CelsiusToFahrenheit(celsius: Int) -> Int {
         let fahrenheit = (Double)(celsius) * 1.8 + 32
         return Int(fahrenheit)
+    }
+    
+    // MARK: - Distance conversions
+    
+    func milesToKilometers(miles: Double) -> Double {
+        let km = miles / 0.62137
+        return km
+    }
+    
+    func kilometersToMiles() {
+        
+    }
+    
+    func inchesToCentimeters() {
+    
+    }
+    
+    func centimetersToInches() {
+        
+    }
+    
+    // MARK: - Pressure conversions
+    
+    func milibarsToInches() {
+        
+    }
+    
+    func inchesToMilibars() {
+        
     }
 }

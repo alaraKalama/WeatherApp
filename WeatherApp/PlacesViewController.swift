@@ -58,6 +58,9 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.textCellIdentifier, forIndexPath: indexPath) as! PlaceTableViewCell
+        let customSelectedColor = UIView()
+        customSelectedColor.backgroundColor = UIColor.lightTextColor()
+        cell.selectedBackgroundView = customSelectedColor
         let row = indexPath.row
         let place = places[row]
         PlaceTableViewCell.createFromPLace(place, cell: cell)

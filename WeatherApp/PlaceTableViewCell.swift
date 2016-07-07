@@ -46,13 +46,22 @@ class PlaceTableViewCell: UITableViewCell {
             cell.summary.text = summary
         }
         
-        //TODO: not acurate??
         if let date = place.currentTime {
             let dayTimePeriodFormatter = NSDateFormatter()
+            let timeZone = NSTimeZone(name: place.timezone!)
             dayTimePeriodFormatter.dateFormat = Constants.dayHoursMinutes
+            dayTimePeriodFormatter.timeZone = timeZone
             let dateString = dayTimePeriodFormatter.stringFromDate(date)
             cell.timeNowLabel.text = dateString
+            
+            if dateString.hasSuffix("AM") {
+                
+            } else if dateString.hasSuffix("PM") {
+                
+            }
         }
+        
+        
 
         
     }

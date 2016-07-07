@@ -27,6 +27,7 @@ class Constants {
     static let ozone = "ozone"
     static let precipIntensity = "precipIntensity"
     static let precipProbability = "precipProbability"
+    static let precipType = "precipType"
     static let pressure = "pressure"
     static let summary = "summary"
     static let time = "time"
@@ -41,7 +42,7 @@ class Constants {
     
     static let City = "City"
     
-    static let dayHoursMinutes = "EEEE, HH:MM"
+    static let dayHoursMinutes = "EEEE, hh:mm a"
     
     static let clear_day = "clear-day"
     static let clear_night = "clear-night"
