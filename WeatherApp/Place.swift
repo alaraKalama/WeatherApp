@@ -49,23 +49,6 @@ class Place {
         return places
     }
     
-    //currently
-    //apparentTemperature = "77.86";
-    //cloudCover = "0.19";
-    //dewPoint = "71.31";
-    //humidity = "0.8";
-    //icon = "clear-day";
-    //ozone = "286.11";
-    //precipIntensity = 0;
-    //precipProbability = 0;
-    //pressure = "1014.05";
-    //summary = Clear;
-    //temperature = "77.86";
-    //time = 1467794539;
-    //visibility = "6.21";
-    //windBearing = 188;
-    //windSpeed = "10.65";
-    
     static func getPlaceFromJSON(json: [String: AnyObject], place: Place) {
         if let timezone = json[Constants.timezone] as? String {
             place.timezone = timezone

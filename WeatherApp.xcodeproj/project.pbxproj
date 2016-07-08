@@ -10,8 +10,6 @@
 		A60F2F7E1D2CF68700CC8215 /* UnitConversionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F2F7D1D2CF68700CC8215 /* UnitConversionManager.swift */; };
 		A60F2F801D2D157300CC8215 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F2F7F1D2D157300CC8215 /* Constants.swift */; };
 		A678FF741D2E98BA004010CD /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A678FF731D2E98BA004010CD /* DetailsView.swift */; };
-		A678FF781D2EA3EC004010CD /* CurrentWeatherDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A678FF771D2EA3EC004010CD /* CurrentWeatherDetailsView.xib */; };
-		A678FF7A1D2EA41D004010CD /* CurrentWeatherDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A678FF791D2EA41D004010CD /* CurrentWeatherDetailsView.swift */; };
 		A67C4B6F1D2569C00016F6E1 /* DetailedReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B6E1D2569C00016F6E1 /* DetailedReportViewController.swift */; };
 		A67C4B721D2572090016F6E1 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B711D2572090016F6E1 /* DownloadManager.swift */; };
 		A67C4B751D257E680016F6E1 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C4B741D257E680016F6E1 /* Place.swift */; };
@@ -31,14 +29,12 @@
 		A60F2F7D1D2CF68700CC8215 /* UnitConversionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitConversionManager.swift; sourceTree = "<group>"; };
 		A60F2F7F1D2D157300CC8215 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A678FF731D2E98BA004010CD /* DetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
-		A678FF771D2EA3EC004010CD /* CurrentWeatherDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentWeatherDetailsView.xib; sourceTree = "<group>"; };
-		A678FF791D2EA41D004010CD /* CurrentWeatherDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherDetailsView.swift; sourceTree = "<group>"; };
 		A67C4B6E1D2569C00016F6E1 /* DetailedReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedReportViewController.swift; sourceTree = "<group>"; };
 		A67C4B711D2572090016F6E1 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		A67C4B741D257E680016F6E1 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A67C4B761D2657180016F6E1 /* PlistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
 		A6C0F9B71D2A467200074B72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		A6ED5C3C1D252AE80044C801 /* SketchyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6ED5C3C1D252AE80044C801 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6ED5C3F1D252AE80044C801 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6ED5C411D252AE80044C801 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		A6ED5C441D252AE80044C801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,8 +63,6 @@
 			children = (
 				A67C4B6E1D2569C00016F6E1 /* DetailedReportViewController.swift */,
 				A678FF731D2E98BA004010CD /* DetailsView.swift */,
-				A678FF771D2EA3EC004010CD /* CurrentWeatherDetailsView.xib */,
-				A678FF791D2EA41D004010CD /* CurrentWeatherDetailsView.swift */,
 			);
 			name = DetailedReport;
 			sourceTree = "<group>";
@@ -103,7 +97,7 @@
 		A6ED5C3D1D252AE80044C801 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A6ED5C3C1D252AE80044C801 /* SketchyWeather.app */,
+				A6ED5C3C1D252AE80044C801 /* Weather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,7 +155,7 @@
 			);
 			name = WeatherApp;
 			productName = WeatherApp;
-			productReference = A6ED5C3C1D252AE80044C801 /* SketchyWeather.app */;
+			productReference = A6ED5C3C1D252AE80044C801 /* Weather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +200,6 @@
 				A6ED5C4A1D252AE80044C801 /* Assets.xcassets in Resources */,
 				A6ED5C551D252B190044C801 /* Places.plist in Resources */,
 				A6ED5C451D252AE80044C801 /* Main.storyboard in Resources */,
-				A678FF781D2EA3EC004010CD /* CurrentWeatherDetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +212,6 @@
 			files = (
 				A6ED5C481D252AE80044C801 /* WeatherApp.xcdatamodeld in Sources */,
 				A67C4B721D2572090016F6E1 /* DownloadManager.swift in Sources */,
-				A678FF7A1D2EA41D004010CD /* CurrentWeatherDetailsView.swift in Sources */,
 				A67C4B6F1D2569C00016F6E1 /* DetailedReportViewController.swift in Sources */,
 				A60F2F801D2D157300CC8215 /* Constants.swift in Sources */,
 				A6ED5C421D252AE80044C801 /* PlacesViewController.swift in Sources */,
@@ -346,7 +338,7 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evori.bianca.WeatherApp;
-				PRODUCT_NAME = SketchyWeather;
+				PRODUCT_NAME = Weather;
 			};
 			name = Debug;
 		};
@@ -357,7 +349,7 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evori.bianca.WeatherApp;
-				PRODUCT_NAME = SketchyWeather;
+				PRODUCT_NAME = Weather;
 			};
 			name = Release;
 		};

@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--SketchyWeather-->
+        <!--Weather-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="PlacesViewController" customModule="SketchyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="PlacesViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" red="0.64313725490196072" green="0.87450980392156863" blue="1" alpha="0.31225754310344828" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.059051724137931035" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="placeCell" rowHeight="92" id="TZd-G7-Mu8" customClass="PlaceTableViewCell" customModule="SketchyWeather" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="placeCell" rowHeight="92" id="TZd-G7-Mu8" customClass="PlaceTableViewCell" customModule="Weather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TZd-G7-Mu8" id="yT3-cc-LEt">
@@ -128,7 +128,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="SketchyWeather" id="eFZ-eU-cJK">
+                    <navigationItem key="navigationItem" title="Weather" id="eFZ-eU-cJK">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="hW3-H8-Lwf">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="u8q-rg-3w8">
                                 <rect key="frame" x="480" y="7" width="100" height="30"/>
@@ -151,12 +151,12 @@
         <!--City name-->
         <scene sceneID="eXW-SQ-Go1">
             <objects>
-                <viewController title="City name" id="g3W-w2-Ddb" customClass="DetailedReportViewController" customModule="SketchyWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="City name" id="g3W-w2-Ddb" customClass="DetailedReportViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="786-kS-QUQ"/>
                         <viewControllerLayoutGuide type="bottom" id="teO-3q-jyj"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="x9H-qF-nkH" customClass="DetailsView" customModule="SketchyWeather" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="x9H-qF-nkH" customClass="DetailsView" customModule="Weather" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -367,7 +367,7 @@
                                         </variation>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8007373595505618" green="0.23086376404494383" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="GQs-Vh-srk" secondAttribute="bottom" constant="10" id="6eX-Rs-ruM"/>
                                     <constraint firstItem="GQs-Vh-srk" firstAttribute="leading" secondItem="k6f-2H-Ikh" secondAttribute="leading" constant="10" id="fS8-rQ-abF"/>
@@ -390,9 +390,22 @@
                             <constraint firstItem="k6f-2H-Ikh" firstAttribute="leading" secondItem="x9H-qF-nkH" secondAttribute="leading" id="zQY-iq-lKU"/>
                         </constraints>
                         <connections>
+                            <outlet property="chanceOfDescriptionLabel" destination="RW7-Ow-y6c" id="hJb-Gh-nHT"/>
+                            <outlet property="chanceOfValueLabel" destination="O1r-wi-kdd" id="eYP-AL-LOQ"/>
+                            <outlet property="degreesLabel" destination="Ahg-2h-a5b" id="xn8-AD-eWv"/>
+                            <outlet property="feelsLikeValueLabel" destination="doq-IK-UUM" id="tey-kZ-d8R"/>
+                            <outlet property="humidityValueLabel" destination="FSF-b8-la1" id="TeP-7e-CmE"/>
                             <outlet property="iconView" destination="ZTN-yf-BND" id="XgN-0W-sP3"/>
+                            <outlet property="pressureValueLabel" destination="u4m-PE-TRB" id="KeE-76-QkH"/>
+                            <outlet property="summaryLabel" destination="2pN-pL-XgE" id="vvd-6L-tml"/>
+                            <outlet property="temperatureLabel" destination="vVq-dJ-GIW" id="mWU-tw-VFe"/>
+                            <outlet property="visibilityValueLabel" destination="jmx-P1-Vfp" id="beR-ZA-ja8"/>
+                            <outlet property="windSpeedValueLabel" destination="5wO-9T-udE" id="cw3-x6-wtK"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="detailsView" destination="x9H-qF-nkH" id="wB4-qY-Aac"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iji-v7-gIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

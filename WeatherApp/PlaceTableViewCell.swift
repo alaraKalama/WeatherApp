@@ -18,13 +18,10 @@ class PlaceTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     static func createFromPLace(place: Place, cell: PlaceTableViewCell) {
@@ -53,17 +50,6 @@ class PlaceTableViewCell: UITableViewCell {
             dayTimePeriodFormatter.timeZone = timeZone
             let dateString = dayTimePeriodFormatter.stringFromDate(date)
             cell.timeNowLabel.text = dateString
-            
-            if dateString.hasSuffix("AM") {
-                
-            } else if dateString.hasSuffix("PM") {
-                
-            }
         }
-        
-        
-
-        
     }
-
 }
