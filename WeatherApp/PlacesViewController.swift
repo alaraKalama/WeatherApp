@@ -10,9 +10,7 @@ import UIKit
 import CoreLocation
 
 class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, DownloadManagerDelegate {
-    
-    
-    
+
     var locationManager = CLLocationManager()
     let downloadManager = DownloadManager.sharedInstance
     let plistManager = PlistManager.sharedInstance
@@ -35,6 +33,18 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.populateTableView()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetailReport"
+        {
+            if let cell = sender as? PlaceTableViewCell {
+                let indexPath = self.tableView.indexPathForCell(cell)!
+                assert(segue.destinationViewController.isKindOfClass(DetailedReportViewController))
+                let detailViewController = segue.destinationViewController as! DetailedReportViewController
+                detailViewController.place = self.places[indexPath.row]
+            }
+        }
     }
     
     // MARK: - Fetch data
