@@ -148,6 +148,17 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView?.reloadData()
         })
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func changeUnits(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            GlobalUnit.sharedManager.isCelsiusSystem = true
+        } else if sender.selectedSegmentIndex == 1 {
+            GlobalUnit.sharedManager.isCelsiusSystem = false
+        }
+        self.tableView?.reloadData()
+    }
 
 }
 

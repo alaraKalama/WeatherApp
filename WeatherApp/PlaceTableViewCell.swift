@@ -25,14 +25,19 @@ class PlaceTableViewCell: UITableViewCell {
     }
     
     static func createFromPLace(place: Place, cell: PlaceTableViewCell) {
+        if GlobalUnit.sharedManager.isCelsiusSystem {
+            if let temp = place.currentTemperatureC {
+                cell.temperatureLabel.text = "\(temp)"
+            }
+        } else {
+            if let temp = place.currentTemperatureF {
+                cell.temperatureLabel.text = "\(temp)"
+            }
+        }
         if let name = place.name {
             cell.placeLabel.text = name
         } else {
             cell.placeLabel.text = ""
-        }
-        
-        if let temp = place.currentTemperature {
-            cell.temperatureLabel.text = "\(temp)"
         }
         
         if let icon = place.icon{

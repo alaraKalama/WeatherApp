@@ -20,14 +20,19 @@ class Place {
     var latitude: String?
     var longitude: String?
     var isCurrentLocation: Bool! = false
-    var currentTemperature: Int?
-    var feelsLikeTemperature: Int?
+    var currentTemperatureC: Int?
+    var currentTemperatureF: Int?
+    var feelsLikeTemperatureC: Int?
+    var feelsLikeTemperatureF: Int?
     var humidity: Int?
-    var visibility: Double?
-    var pressure: Double?
+    var visibilityKm: Double?
+    var visibilityMi: Double?
+    var pressureMb: Double?
+    var pressureIn: Double?
     var precipitation: Int?
     var precipType: String?
-    var windSpeed: Double?
+    var windSpeedKm: Double?
+    var windSpeedMi: Double?
     var icon: String?
     var currentTime: NSDate?
     var timezone: String?
@@ -57,24 +62,26 @@ class Place {
             NSLog(place.name!)
             print(currentWather)
             if let temperatureInFahrenheit = currentWather[Constants.temperature] as? Int {
-                //C
-                place.currentTemperature = conversionManager.FahrenheitToCelsius(temperatureInFahrenheit)
+                
+                place.currentTemperatureF = temperatureInFahrenheit
+                place.currentTemperatureC = conversionManager.FahrenheitToCelsius(temperatureInFahrenheit)
             }
             if let feelsLike = currentWather[Constants.feelsLike] as? Int {
-                //C
-                place.feelsLikeTemperature = conversionManager.FahrenheitToCelsius(feelsLike)
+                place.feelsLikeTemperatureF = feelsLike
+                place.feelsLikeTemperatureC = conversionManager.FahrenheitToCelsius(feelsLike)
             }
             if let humidity = currentWather[Constants.humidity] as? Double {
                 //%
                 place.humidity = Int(humidity * 100) % 100
             }
             if let visibility = currentWather[Constants.visibility] as? Double {
-                //km
-                place.visibility = conversionManager.milesToKilometers(visibility)
+                
+                place.visibilityMi = visibility
+                place.visibilityKm = conversionManager.milesToKilometers(visibility)
             }
             if let pressure = currentWather[Constants.pressure] as? Double {
-                //mb
-                place.pressure = pressure
+                place.pressureMb = pressure
+                place.pressureIn = conversionManager.milibarsToInches(pressure)
             }
             if let precipitation = currentWather[Constants.precipProbability] as? Double {
                 place.precipitation = Int(precipitation * 100) % 100
@@ -83,7 +90,8 @@ class Place {
                 place.precipType = precipType
             }
             if let windSpeed = currentWather[Constants.windSpeed] as? Double {
-                place.windSpeed = conversionManager.milesToKilometers(windSpeed)
+                place.windSpeedMi = windSpeed
+                place.windSpeedKm = conversionManager.milesToKilometers(windSpeed)
             }
             if let icon = currentWather[Constants.icon] as? String {
                 place.icon = icon

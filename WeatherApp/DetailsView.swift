@@ -11,7 +11,6 @@ import UIKit
 class DetailsView: UIView {
 
     @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var degreesLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var feelsLikeValueLabel: UILabel!
@@ -24,28 +23,46 @@ class DetailsView: UIView {
     
     func displayPlaceInfo(place: Place) {
         self.summaryLabel.text = place.summary
-        if let temp = place.currentTemperature {
-            self.temperatureLabel.text = "\(temp)"
-        }
         self.iconView.image = UIImage(named: place.icon!)
-        if let feelsLike = place.feelsLikeTemperature {
-            self.feelsLikeValueLabel.text = "\(feelsLike)"
-        }
+        
         if let humidity = place.humidity {
-            self.humidityValueLabel.text = "\(humidity)"
-
+            self.humidityValueLabel.text = "\(humidity)%"
         }
-        if let visibility = place.visibility {
-            self.visibilityValueLabel.text = "\(visibility)"
 
-        }
-        if let pressure = place.pressure {
-            self.pressureValueLabel.text = "\(pressure)"
-
-        }
-        if let windSpeed = place.windSpeed {
-            self.windSpeedValueLabel.text = "\(windSpeed)"
-
+        if GlobalUnit.sharedManager.isCelsiusSystem {
+            if let temp = place.currentTemperatureC {
+                self.temperatureLabel.text = "\(temp)°C"
+            }
+            if let feelsLike = place.feelsLikeTemperatureC {
+                self.feelsLikeValueLabel.text = "\(feelsLike)°C"
+            }
+            if let visibility = place.visibilityKm {
+                //\(someDouble.format(.1))"
+                self.visibilityValueLabel.text = String(format: "%.1f km", visibility)
+            }
+            if let pressure = place.pressureMb {
+                self.pressureValueLabel.text = "\(Int(pressure)) mb"
+            }
+            if let windSpeed = place.windSpeedKm {
+                self.windSpeedValueLabel.text = String(format: "%.1f km/h", windSpeed)
+            }
+        } else {
+            if let temp = place.currentTemperatureF {
+                self.temperatureLabel.text = "\(temp)°F"
+            }
+            if let feelsLike = place.feelsLikeTemperatureF {
+                self.feelsLikeValueLabel.text = "\(feelsLike)°C"
+            }
+            if let visibility = place.visibilityMi {
+                //\(someDouble.format(.1))"
+                self.visibilityValueLabel.text = String(format: "%.1f mi", visibility)
+            }
+            if let pressure = place.pressureIn {
+                self.pressureValueLabel.text = "\(Int(pressure)) in"
+            }
+            if let windSpeed = place.windSpeedMi {
+                self.windSpeedValueLabel.text = String(format: "%.1f mi/h", windSpeed)
+            }
         }
     }
 }

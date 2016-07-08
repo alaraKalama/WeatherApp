@@ -31,25 +31,9 @@ class UnitConversionManager {
         return km
     }
     
-    func kilometersToMiles() {
-        
-    }
-    
-    func inchesToCentimeters() {
-    
-    }
-    
-    func centimetersToInches() {
-        
-    }
-    
     // MARK: - Pressure conversions
     
-    func milibarsToInches() {
-        
-    }
-    
-    func inchesToMilibars() {
-        
+    func milibarsToInches(mb: Double) -> Double {
+        return mb *  0.0295301
     }
 }
