@@ -9,12 +9,13 @@
 import Foundation
 
 class Constants {
-    static let myAPIKey = "65865cb85a8f5c9962bf4f514bd1a12d"
-    static let forecastCall = "https://api.forecast.io/forecast/"
     
+    // MARK: - file names
     
     static let plistFileName = "Places"
     static let plist = "plist"
+    
+    // MARK: - place json properties
     
     static let timezone = "timezone"
     static let temperature = "temperature"
@@ -34,15 +35,12 @@ class Constants {
     static let visibility = "visibility"
     static let windBearing = "windBearing"
     static let windSpeed = "windSpeed"
-    
+    static let hourly = "hourly"
+    static let daily = "daily"
     static let latitude = "latitude"
     static let longitude = "longitude"
     
-    static let textCellIdentifier = "placeCell"
-    
-    static let City = "City"
-    
-    static let dayHoursMinutes = "EEEE, hh:mm a"
+    //MARK: - icon strings
     
     static let clear_day = "clear-day"
     static let clear_night = "clear-night"
@@ -56,7 +54,10 @@ class Constants {
     static let snow = "snow"
     static let wind = "wind"
     
-    // MARK: - image urls
+    // MARK: - urls
+    
+    static let myAPIKey = "65865cb85a8f5c9962bf4f514bd1a12d"
+    static let forecastCall = "https://api.forecast.io/forecast/"
     static let githubUrl = "https://raw.githubusercontent.com/alaraKalama/WeatherApp/master/weather%20backgrounds/"
     static let cleardayUrl = "clear-day.png"
     static let clearnightUrl = "clear-night2.png"
@@ -71,8 +72,11 @@ class Constants {
     static let windydayUrl = "windy-day.png"
     static let windynightUrl = "windy-night.png"
     static let tablebackground = "table-background.png"
-
-
-
     
+    
+    //MARK: - others
+    
+    static let textCellIdentifier = "placeCell"
+    static let City = "City"
+    static let dayHoursMinutes = "EEEE, hh:mm a"
 }

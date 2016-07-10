@@ -15,6 +15,13 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var backgroundScrollview: UIScrollView!
     @IBOutlet weak var backgroundImage: UIImageView!
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: Selector("handleRefresh:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
 
     var locationManager = CLLocationManager()
     let downloadManager = DownloadManager.sharedInstance
@@ -38,6 +45,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.populateTableView()
+        self.tableView.addSubview(self.refreshControl)
         self.downloadManager.downloadImage(Constants.githubUrl + Constants.tablebackground, view: self.backgroundImage)
     }
     
@@ -123,7 +131,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
                     self.populateTableView()
                 })
             }
-            
         })
     }
     
@@ -171,5 +178,11 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
         let point = CGPoint(x: 0, y: offsetY)
         self.backgroundScrollview.setContentOffset(point, animated: true)
-    }}
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+}
 

@@ -37,6 +37,9 @@ class Place {
     var currentTime: NSDate?
     var timezone: String?
     var summary: String?
+    var hourly: [String:AnyObject]?
+    
+    //MARK: - Functions
     
     static func getPlacesFromDictionary(dict: NSDictionary) -> [Place] {
         var places = [Place]()
@@ -58,11 +61,21 @@ class Place {
         if let timezone = json[Constants.timezone] as? String {
             place.timezone = timezone
         }
+        if let hourly = json[Constants.hourly] as? [String:AnyObject] {
+            //TODO!!!
+            place.hourly = hourly
+            let summary = hourly["summary"] as? String
+            let icon = hourly[Constants.icon] as? String
+            let data = hourly["data"] as? NSDictionary
+            print("YAY")
+        }
+        if let daily = json[Constants.daily] as? NSDictionary {
+            
+        }
         if let currentWather = json[Constants.currently] as? NSDictionary {
             NSLog(place.name!)
             print(currentWather)
             if let temperatureInFahrenheit = currentWather[Constants.temperature] as? Int {
-                
                 place.currentTemperatureF = temperatureInFahrenheit
                 place.currentTemperatureC = conversionManager.FahrenheitToCelsius(temperatureInFahrenheit)
             }
@@ -71,11 +84,9 @@ class Place {
                 place.feelsLikeTemperatureC = conversionManager.FahrenheitToCelsius(feelsLike)
             }
             if let humidity = currentWather[Constants.humidity] as? Double {
-                //%
                 place.humidity = Int(humidity * 100) % 100
             }
             if let visibility = currentWather[Constants.visibility] as? Double {
-                
                 place.visibilityMi = visibility
                 place.visibilityKm = conversionManager.milesToKilometers(visibility)
             }
@@ -103,8 +114,6 @@ class Place {
                 let date = NSDate(timeIntervalSince1970: secondsSince1970)
                 place.currentTime = date
             }
-            
         }
-        
     }
 }
