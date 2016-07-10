@@ -407,9 +407,16 @@
                         <connections>
                             <outlet property="backgroundImageView" destination="nLg-Kg-r80" id="zsX-9W-PV2"/>
                             <outlet property="backgroundScrollView" destination="fJL-0q-zxr" id="f8Y-ch-5En"/>
+                            <outlet property="chanceOfDescriptionLabel" destination="Y6O-jk-ZFj" id="ikX-7S-eFZ"/>
+                            <outlet property="chanceOfValueLabel" destination="aim-SY-82v" id="gal-Wf-Rj6"/>
+                            <outlet property="feelsLikeValueLabel" destination="jWW-IQ-cp8" id="HPl-Vl-J5G"/>
+                            <outlet property="humidityValueLabel" destination="VL9-m2-QEh" id="2HC-aC-0vN"/>
                             <outlet property="iconView" destination="IDp-wZ-qdx" id="V3Q-eQ-l7l"/>
+                            <outlet property="pressureValueLabel" destination="9Cz-dR-VZe" id="A5B-9E-9qF"/>
                             <outlet property="summaryLabel" destination="Sne-iH-8de" id="TZV-pJ-yum"/>
                             <outlet property="temperatureLabel" destination="EvF-jr-p18" id="F2u-bB-7lI"/>
+                            <outlet property="visibilityValueLabel" destination="Zgt-M5-OVA" id="tTA-Ff-zpT"/>
+                            <outlet property="windSpeedValueLabel" destination="HcO-oa-VgV" id="VXB-hX-UVS"/>
                         </connections>
                     </view>
                     <connections>

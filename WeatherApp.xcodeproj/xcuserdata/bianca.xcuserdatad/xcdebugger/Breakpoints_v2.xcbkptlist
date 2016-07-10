@@ -102,7 +102,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherApp/Place.swift"
@@ -115,34 +115,34 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static Weather.Place.getPlaceFromJSON (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, place : Weather.Place) -&gt; ()"
                   moduleName = "Weather"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bianca/Documents/Projects/WeatherApp/WeatherApp/Place.swift"
-                  timestampString = "489654408.422283"
+                  urlString = "file:///Volumes/Mac%20User%20Data%20HD/Users/Bianca/Desktop/XCodeProjects/WeatherApp/WeatherApp/Place.swift"
+                  timestampString = "489848414.78966"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "6752">
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "6735">
                </Location>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static Weather.Place.getPlaceFromJSON (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;, place : Weather.Place) -&gt; ()"
                   moduleName = "Weather"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bianca/Documents/Projects/WeatherApp/WeatherApp/Place.swift"
-                  timestampString = "489654408.422451"
+                  urlString = "file:///Volumes/Mac%20User%20Data%20HD/Users/Bianca/Desktop/XCodeProjects/WeatherApp/WeatherApp/Place.swift"
+                  timestampString = "489848414.789801"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "7252">
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "7280">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -241,6 +241,38 @@
             endingLineNumber = "98"
             landmarkName = "downloadImage(_:view:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.DownloadManager.downloadImage (Swift.String, view : __ObjC.UIImageView) -&gt; ()"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Mac%20User%20Data%20HD/Users/Bianca/Desktop/XCodeProjects/WeatherApp/WeatherApp/DownloadManager.swift"
+                  timestampString = "489848410.92422"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.DownloadManager.(downloadImage (Swift.String, view : __ObjC.UIImageView) -&gt; ()).(closure #1)"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Mac%20User%20Data%20HD/Users/Bianca/Desktop/XCodeProjects/WeatherApp/WeatherApp/DownloadManager.swift"
+                  timestampString = "489848410.924352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "41">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -266,7 +298,7 @@
                   moduleName = "Weather"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Mac%20User%20Data%20HD/Users/Bianca/Desktop/XCodeProjects/WeatherApp/WeatherApp/DownloadManager.swift"
-                  timestampString = "489840365.381305"
+                  timestampString = "489848410.925116"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "100"
@@ -281,7 +313,7 @@
                   moduleName = "Weather"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Mac%20User%20Data%20HD/Users/Bianca/Desktop/XCodeProjects/WeatherApp/WeatherApp/DownloadManager.swift"
-                  timestampString = "489840365.381434"
+                  timestampString = "489848410.925231"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "101"
