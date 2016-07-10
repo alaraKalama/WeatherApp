@@ -79,19 +79,6 @@ class DownloadManager {
     }
     
     // MARK: - Background images downloading
-    var githubUrl = "https://raw.githubusercontent.com/alaraKalama/WeatherApp/master/weather%20backgrounds/"
-    //clear-day = clear-day.png
-    //clear-night = clear-night2.png
-    //cloudy-day = cloudy-day.png
-    //cloudy-night = cloudy-night.png
-    //fog = fog2.png
-    //partly-cloudy-day = partly-cloudy-day.jpg
-    //rain-day = rain-day.png
-    //rain-night = rain-night.png
-    //sleet = sleet.png
-    //snow-day = snow-day2.png
-    //windy-day = windy-day.png
-    //windy-night = windy-night.png
     
     func downloadImage(url: String, view: UIImageView) {
         let url = NSURL(string: url)

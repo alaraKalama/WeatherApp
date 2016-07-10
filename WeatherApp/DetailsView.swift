@@ -8,12 +8,8 @@
 
 import UIKit
 
-class DetailsView: UIView {
+class DetailsView: UIView, UIScrollViewDelegate {
     
-    let downloadManager = DownloadManager.sharedInstance
-
-    @IBOutlet weak var backgroundScrollView: UIScrollView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
@@ -29,33 +25,7 @@ class DetailsView: UIView {
         
         self.summaryLabel.text = place.summary
         self.iconView.image = UIImage(named: place.icon!)
-        var backgroundURL = String()
-        switch place.icon {
-        case Constants.clear_day?:
-            backgroundURL = Constants.cleardayUrl
-        case Constants.clear_night?:
-            backgroundURL = Constants.clearnightUrl
-        case Constants.cloudy_day?:
-            backgroundURL = Constants.cloudydayUrl
-        case Constants.cloudy_night?:
-            backgroundURL = Constants.cloudynightUrl
-        case Constants.partly_cloudy_day?:
-            backgroundURL = Constants.partlycloudydayUrl
-        case Constants.partly_cloudy_night?:
-            backgroundURL = Constants.cloudynightUrl
-        case Constants.rain?:
-            backgroundURL = Constants.raindayUrl
-        case Constants.sleet?:
-            backgroundURL = Constants.sleetUrl
-        case Constants.snow?:
-            backgroundURL = Constants.snowdayUrl
-        case Constants.fog?:
-            backgroundURL = Constants.fogUrl
-        default:
-            backgroundURL = Constants.cleardayUrl
-        }
         
-        downloadManager.downloadImage(Constants.githubUrl + backgroundURL, view: self.backgroundImageView)
         
         if let humidity = place.humidity {
             self.humidityValueLabel.text = "\(humidity)%"
@@ -103,5 +73,9 @@ class DetailsView: UIView {
                 self.windSpeedValueLabel.text = String(format: "%.1f mi/h", windSpeed)
             }
         }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        print("scroll scroll")
     }
 }

@@ -9,7 +9,12 @@
 import UIKit
 import CoreLocation
 
-class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, DownloadManagerDelegate {
+class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UIScrollViewDelegate, DownloadManagerDelegate {
+    
+    private var lastContentOffset: CGFloat = 0
+    
+    @IBOutlet weak var backgroundScrollview: UIScrollView!
+    @IBOutlet weak var backgroundImage: UIImageView!
 
     var locationManager = CLLocationManager()
     let downloadManager = DownloadManager.sharedInstance
@@ -33,6 +38,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.populateTableView()
+        self.downloadManager.downloadImage(Constants.githubUrl + Constants.tablebackground, view: self.backgroundImage)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -56,7 +62,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.downloadManager.fetchDataForPlaces(places)
     }
     
-        // MARK: - Table View Data Source
+   // MARK: - Table View Data Source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -159,6 +165,17 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         }
         self.tableView?.reloadData()
     }
-
+    
+    // MARK: - UI Events
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        print("they see me scrollin")
+        if self.lastContentOffset > scrollView.contentOffset.y {
+        } else if self.lastContentOffset < scrollView.contentOffset.y {
+             // move down
+        }
+        self.lastContentOffset = scrollView.contentOffset.y
+        let point = CGPoint(x: 0, y: self.lastContentOffset)
+        self.backgroundScrollview.setContentOffset(point, animated: true)
+    }
 }
 
