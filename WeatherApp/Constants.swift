@@ -55,6 +55,21 @@ class Constants {
     static let sleet = "sleet"
     static let snow = "snow"
     static let wind = "wind"
+    
+    // MARK: - image urls
+    static let githubUrl = "https://raw.githubusercontent.com/alaraKalama/WeatherApp/master/weather%20backgrounds/"
+    static let cleardayUrl = "clear-day.png"
+    static let clearnightUrl = "clear-night2.png"
+    static let cloudydayUrl = "cloudy-day.png"
+    static let cloudynightUrl = "cloudy-night.png"
+    static let fogUrl = "fog2.png"
+    static let partlycloudydayUrl = "partly-cloudy-day.jpg"
+    static let raindayUrl = "rain-day.png"
+    static let rainnightUrl = "rain-night.png"
+    static let sleetUrl = "sleet.png"
+    static let snowdayUrl = "snow-day2.png"
+    static let windydayUrl = "windy-day.png"
+    static let windynightUrl = "windy-night.png"
 
 
 
