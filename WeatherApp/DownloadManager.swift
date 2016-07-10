@@ -72,7 +72,6 @@ class DownloadManager {
                         return
                     }
                 })
-                
                 task.resume()
             }
         }
@@ -81,6 +80,7 @@ class DownloadManager {
     // MARK: - Background images downloading
     
     func downloadImage(url: String, view: UIImageView) {
+        //TODO; cache those images
         let url = NSURL(string: url)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
             if let data = responseData {

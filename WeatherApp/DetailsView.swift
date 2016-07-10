@@ -8,9 +8,10 @@
 
 import UIKit
 
-class DetailsView: UIView, UIScrollViewDelegate {
+class DetailsView: UIView {
     
     @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var feelsLikeValueLabel: UILabel!
@@ -26,6 +27,15 @@ class DetailsView: UIView, UIScrollViewDelegate {
         self.summaryLabel.text = place.summary
         self.iconView.image = UIImage(named: place.icon!)
         
+        if let date = place.currentTime {
+            //TODO: this func should be exported in one place for all usages
+            let dayTimePeriodFormatter = NSDateFormatter()
+            let timeZone = NSTimeZone(name: place.timezone!)
+            dayTimePeriodFormatter.dateFormat = Constants.dayHoursMinutes
+            dayTimePeriodFormatter.timeZone = timeZone
+            let dateString = dayTimePeriodFormatter.stringFromDate(date)
+            self.timeLabel.text = dateString
+        }
         
         if let humidity = place.humidity {
             self.humidityValueLabel.text = "\(humidity)%"
@@ -73,9 +83,5 @@ class DetailsView: UIView, UIScrollViewDelegate {
                 self.windSpeedValueLabel.text = String(format: "%.1f mi/h", windSpeed)
             }
         }
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("scroll scroll")
     }
 }

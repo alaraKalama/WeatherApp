@@ -57,7 +57,6 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
         default:
             backgroundURL = Constants.cleardayUrl
         }
-        
         downloadManager.downloadImage(Constants.githubUrl + backgroundURL, view: self.backgroundImage)
     }
     
@@ -65,6 +64,7 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - UI Events
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        //TODO: This func should be exported in one place
         let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
         let point = CGPoint(x: 0, y: offsetY)
         self.backgroundScrollview.setContentOffset(point, animated: true)
