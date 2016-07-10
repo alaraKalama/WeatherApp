@@ -12,6 +12,8 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
 
     let downloadManager = DownloadManager.sharedInstance
 
+    let offsetSpeed: CGFloat = 25.0
+    
     private var lastContentOffset: CGFloat = 0
     var place: Place!
     @IBOutlet var detailsView: DetailsView!
@@ -61,10 +63,10 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
     
     
     // MARK: - UI Events
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("they see me scrollin")
-        self.lastContentOffset = scrollView.contentOffset.y
-        let point = CGPoint(x: 0, y: self.lastContentOffset)
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
+        let point = CGPoint(x: 0, y: offsetY)
         self.backgroundScrollview.setContentOffset(point, animated: true)
     }
 

@@ -11,7 +11,7 @@ import CoreLocation
 
 class PlacesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UIScrollViewDelegate, DownloadManagerDelegate {
     
-    private var lastContentOffset: CGFloat = 0
+    let offsetSpeed: CGFloat = 25.0
     
     @IBOutlet weak var backgroundScrollview: UIScrollView!
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -167,15 +167,9 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK: - UI Events
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("they see me scrollin")
-        if self.lastContentOffset > scrollView.contentOffset.y {
-        } else if self.lastContentOffset < scrollView.contentOffset.y {
-             // move down
-        }
-        self.lastContentOffset = scrollView.contentOffset.y
-        let point = CGPoint(x: 0, y: self.lastContentOffset)
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
+        let point = CGPoint(x: 0, y: offsetY)
         self.backgroundScrollview.setContentOffset(point, animated: true)
-    }
-}
+    }}
 
