@@ -9,6 +9,7 @@
 
 
 import Foundation
+import UIKit
 
 class Place {
     
@@ -38,6 +39,7 @@ class Place {
     var timezone: String?
     var summary: String?
     var hourly: [String:AnyObject]?
+    var backgroundImageData = NSData()
     
     //MARK: - Functions
     

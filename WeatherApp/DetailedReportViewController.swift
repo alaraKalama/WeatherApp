@@ -23,7 +23,7 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = place.name
-        self.fetchBackgroundPhoto()
+        self.backgroundImage.image = UIImage(data: place.backgroundImageData)
         self.detailsView.displayPlaceInfo(self.place)
     }
 
@@ -31,46 +31,10 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    func fetchBackgroundPhoto() {
-        var backgroundURL = String()
-        switch place.icon {
-        case Constants.clear_day?:
-            backgroundURL = Constants.cleardayUrl
-        case Constants.clear_night?:
-            backgroundURL = Constants.clearnightUrl
-        case Constants.cloudy_day?:
-            backgroundURL = Constants.cloudydayUrl
-        case Constants.cloudy_night?:
-            backgroundURL = Constants.cloudynightUrl
-        case Constants.partly_cloudy_day?:
-            backgroundURL = Constants.partlycloudydayUrl
-        case Constants.partly_cloudy_night?:
-            backgroundURL = Constants.cloudynightUrl
-        case Constants.rain?:
-            backgroundURL = Constants.raindayUrl
-        case Constants.sleet?:
-            backgroundURL = Constants.sleetUrl
-        case Constants.snow?:
-            backgroundURL = Constants.snowdayUrl
-        case Constants.fog?:
-            backgroundURL = Constants.fogUrl
-        default:
-            backgroundURL = Constants.cleardayUrl
-        }
-        downloadManager.downloadImage(Constants.githubUrl + backgroundURL, view: self.backgroundImage)
-    }
-    
-    
     // MARK: - UI Events
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         //TODO: This func should be exported in one place
-        let a = scrollView.contentOffset.y
-        let b = self.backgroundImage.frame.origin.y
-        let c = self.backgroundImage.frame.height
-        let d = self.offsetSpeed
-        //scrollView.frame.height
-        
         let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / scrollView.frame.height * self.offsetSpeed
         let point = CGPoint(x: 0, y: offsetY)
         self.backgroundScrollview.setContentOffset(point, animated: true)

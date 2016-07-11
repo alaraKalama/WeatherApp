@@ -70,16 +70,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
             self.places = plistManager.getAllPlaces()
         }
         
-//        if let firstPlace = self.places.first {
-//            let weatherOperation = WeatherOperation(place: firstPlace)
-//            weatherOperation.completionBlock = {
-//                NSLog("testing finished: \(weatherOperation.state)")
-//            }
-//            
-//            self.downloadQueue.maxConcurrentOperationCount = 2
-//            self.downloadQueue.addOperation(weatherOperation)
-//        }
-        
         self.downloadManager.fetchDataForPlaces(places)
     }
     
@@ -178,6 +168,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView?.reloadData()
             self.refreshControl.endRefreshing()
+            self.downloadManager.downloadBackgroundImages(self.places)
         })
     }
     

@@ -11,6 +11,10 @@ import UIKit
 
 class PictureOperation: NSOperation {
     
+    var place: Place?
+    var task: NSURLSessionDataTask?
+    var url: String?
+    
     enum State {
         case Ready, Executing, Finished
         func keyPath() -> String {
@@ -36,9 +40,12 @@ class PictureOperation: NSOperation {
         }
     }
     
-    override init() {
+    init(url: String, place: Place) {
+        self.url = url
+        self.place = place
         self.state = .Ready
         super.init()
+        
     }
     
     override func main() {
@@ -65,7 +72,26 @@ class PictureOperation: NSOperation {
     }
     
     override func start() {
-        
+        let url = NSURL(string: self.url!)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
+            if let data = responseData {
+                self.place?.backgroundImageData = data
+                self.finish()
+            } else {
+                self.cancel()
+            }
+        }
+        task.resume()
+    }
+    
+    override func cancel() {
+        self.state = .Finished
+        self.task?.cancel()
+        super.cancel()
+    }
+    
+    func finish() {
+        self.state = .Finished
     }
 
 
@@ -73,14 +99,13 @@ class PictureOperation: NSOperation {
     func downloadImage(url: String, view: UIImageView) {
         //TODO; cache those images
         let url = NSURL(string: url)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
+        self.task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
             if let data = responseData {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     view.image = UIImage(data: data)
                 })
             }
         }
-        task.resume()
+        self.task!.resume()
     }
-
 }
