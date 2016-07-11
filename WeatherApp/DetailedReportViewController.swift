@@ -65,9 +65,22 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         //TODO: This func should be exported in one place
-        let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
+        let a = scrollView.contentOffset.y
+        let b = self.backgroundImage.frame.origin.y
+        let c = self.backgroundImage.frame.height
+        let d = self.offsetSpeed
+        //scrollView.frame.height
+        
+        let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / scrollView.frame.height * self.offsetSpeed
         let point = CGPoint(x: 0, y: offsetY)
         self.backgroundScrollview.setContentOffset(point, animated: true)
     }
+    
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        //TODO: This func should be exported in one place
+//        let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
+//        let point = CGPoint(x: 0, y: offsetY)
+//        self.backgroundScrollview.setContentOffset(point, animated: true)
+//    }
 
 }

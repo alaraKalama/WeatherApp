@@ -61,17 +61,17 @@ class Place {
         if let timezone = json[Constants.timezone] as? String {
             place.timezone = timezone
         }
-        if let hourly = json[Constants.hourly] as? [String:AnyObject] {
-            //TODO!!!
-            place.hourly = hourly
-            let summary = hourly["summary"] as? String
-            let icon = hourly[Constants.icon] as? String
-            let data = hourly["data"] as? NSDictionary
-            print("YAY")
-        }
-        if let daily = json[Constants.daily] as? NSDictionary {
-            
-        }
+//        if let hourly = json[Constants.hourly] as? [String:AnyObject] {
+//            //TODO!!!
+//            place.hourly = hourly
+//            let summary = hourly["summary"] as? String
+//            let icon = hourly[Constants.icon] as? String
+//            let data = hourly["data"] as? NSDictionary
+//            print("YAY")
+//        }
+//        if let daily = json[Constants.daily] as? NSDictionary {
+//            
+//        }
         if let currentWather = json[Constants.currently] as? NSDictionary {
             NSLog(place.name!)
             print(currentWather)

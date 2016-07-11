@@ -194,10 +194,9 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK: - UI Events
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        NSLog("scrollin")
         let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
         let point = CGPoint(x: 0, y: offsetY)
-        self.backgroundScrollview.minimumZoomScale = 0.25
-        self.backgroundScrollview.setZoomScale(0.5, animated: true)
         self.backgroundScrollview.setContentOffset(point, animated: true)
     }
     

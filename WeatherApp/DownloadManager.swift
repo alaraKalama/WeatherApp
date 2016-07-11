@@ -40,7 +40,6 @@ class DownloadManager {
         }
         for (index,place) in places.enumerate() {
             let weatherOperation = WeatherOperation(place: place)
-            //weatherOperation.queuePriority = .High
             weatherOperation.completionBlock = {
                 NSLog("Finished \(index) operation for \(place.name)")
             }
@@ -48,6 +47,10 @@ class DownloadManager {
             self.forecastsQueue.addOperation(weatherOperation)
         }
         self.forecastsQueue.addOperation(doneOperation)
+    }
+    
+    func downloadBackgroundImages(places:[Place]) {
+        
     }
     
     // MARK: - Background images downloading

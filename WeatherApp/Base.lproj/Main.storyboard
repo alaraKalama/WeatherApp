@@ -15,14 +15,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCP-Ru-Gj5">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YKf-do-Yv9">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -30,13 +30,20 @@
                                     <constraint firstItem="YKf-do-Yv9" firstAttribute="top" secondItem="uCP-Ru-Gj5" secondAttribute="top" id="LuP-OI-WF8"/>
                                     <constraint firstAttribute="trailing" secondItem="YKf-do-Yv9" secondAttribute="trailing" id="MZl-qA-E2z"/>
                                     <constraint firstAttribute="bottom" secondItem="YKf-do-Yv9" secondAttribute="bottom" id="XXb-Sv-6Me"/>
+                                    <constraint firstItem="YKf-do-Yv9" firstAttribute="centerY" secondItem="uCP-Ru-Gj5" secondAttribute="centerY" id="Y95-Zo-yhY"/>
                                     <constraint firstItem="YKf-do-Yv9" firstAttribute="leading" secondItem="uCP-Ru-Gj5" secondAttribute="leading" id="b1n-zf-C4O"/>
                                     <constraint firstItem="YKf-do-Yv9" firstAttribute="centerY" secondItem="uCP-Ru-Gj5" secondAttribute="centerY" id="uLd-xK-iwc"/>
                                     <constraint firstItem="YKf-do-Yv9" firstAttribute="centerX" secondItem="uCP-Ru-Gj5" secondAttribute="centerX" id="yKd-7L-R30"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Y95-Zo-yhY"/>
+                                        <exclude reference="uLd-xK-iwc"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="92" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s58-zt-APj">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.64313725490196072" green="0.87450980392156863" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.059051724137931035" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -155,13 +162,20 @@
                             <constraint firstItem="uCP-Ru-Gj5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4va-9V-06d"/>
                             <constraint firstItem="s58-zt-APj" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="7Fs-pF-o8O"/>
                             <constraint firstItem="s58-zt-APj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="AQA-2O-fMh"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YKf-do-Yv9" secondAttribute="bottom" id="G3U-pi-zs9"/>
                             <constraint firstItem="uCP-Ru-Gj5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="MDO-Cj-Ta9"/>
+                            <constraint firstItem="uCP-Ru-Gj5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="ZnJ-SU-ycQ"/>
                             <constraint firstAttribute="trailing" secondItem="s58-zt-APj" secondAttribute="trailing" id="ehq-0s-pOk"/>
                             <constraint firstAttribute="trailing" secondItem="uCP-Ru-Gj5" secondAttribute="trailing" id="g2C-QQ-Xc7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uCP-Ru-Gj5" secondAttribute="bottom" id="n6c-Ed-r8E"/>
                             <constraint firstItem="uCP-Ru-Gj5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="x3K-Du-o7i"/>
                             <constraint firstItem="s58-zt-APj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zXA-nW-qzO"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="x3K-Du-o7i"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Weather" id="eFZ-eU-cJK">
@@ -179,6 +193,7 @@
                             </segmentedControl>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImage" destination="YKf-do-Yv9" id="ERR-fC-n7m"/>
                         <outlet property="backgroundScrollview" destination="uCP-Ru-Gj5" id="9Qq-Wn-PWH"/>
@@ -217,6 +232,11 @@
                                     <constraint firstItem="nLg-Kg-r80" firstAttribute="leading" secondItem="fJL-0q-zxr" secondAttribute="leading" id="uZq-W4-Pv9"/>
                                     <constraint firstItem="nLg-Kg-r80" firstAttribute="width" secondItem="fJL-0q-zxr" secondAttribute="width" id="zdH-IB-9bZ"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Nm9-9z-1sJ"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="summary" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sne-iH-8de">
                                 <rect key="frame" x="0.0" y="186" width="600" height="21"/>
@@ -390,9 +410,11 @@
                             <constraint firstItem="fJL-0q-zxr" firstAttribute="height" secondItem="x9H-qF-nkH" secondAttribute="height" priority="750" id="2mh-RE-yFq"/>
                             <constraint firstItem="teO-3q-jyj" firstAttribute="top" secondItem="NSb-jQ-Tc6" secondAttribute="bottom" id="5Zr-TB-RQS"/>
                             <constraint firstItem="FCL-kZ-XGH" firstAttribute="leading" secondItem="x9H-qF-nkH" secondAttribute="leading" id="6U5-Zu-Vdf"/>
+                            <constraint firstItem="teO-3q-jyj" firstAttribute="top" secondItem="nLg-Kg-r80" secondAttribute="bottom" id="9Oj-2i-3hr"/>
                             <constraint firstItem="NSb-jQ-Tc6" firstAttribute="leading" secondItem="x9H-qF-nkH" secondAttribute="leading" id="C6a-aK-Unx"/>
                             <constraint firstAttribute="trailing" secondItem="NSb-jQ-Tc6" secondAttribute="trailing" id="Fvx-Vo-npl"/>
                             <constraint firstItem="Sne-iH-8de" firstAttribute="leading" secondItem="x9H-qF-nkH" secondAttribute="leading" id="LJh-dD-NHf"/>
+                            <constraint firstItem="nLg-Kg-r80" firstAttribute="top" secondItem="786-kS-QUQ" secondAttribute="bottom" constant="-20" id="PiP-vy-RZT"/>
                             <constraint firstItem="NSb-jQ-Tc6" firstAttribute="top" secondItem="Sne-iH-8de" secondAttribute="bottom" constant="29" id="Sqo-Zc-527"/>
                             <constraint firstAttribute="trailing" secondItem="Sne-iH-8de" secondAttribute="trailing" id="V8e-YT-fsq"/>
                             <constraint firstItem="fJL-0q-zxr" firstAttribute="leading" secondItem="x9H-qF-nkH" secondAttribute="leading" id="YWH-Vl-ELb"/>
@@ -403,7 +425,14 @@
                             <constraint firstAttribute="trailing" secondItem="fJL-0q-zxr" secondAttribute="trailing" id="uVC-kA-mpb"/>
                             <constraint firstItem="teO-3q-jyj" firstAttribute="top" secondItem="fJL-0q-zxr" secondAttribute="bottom" id="xZL-Ym-P8a"/>
                             <constraint firstItem="Sne-iH-8de" firstAttribute="top" secondItem="FCL-kZ-XGH" secondAttribute="bottom" constant="10" id="z1Q-YF-ihF"/>
+                            <constraint firstItem="teO-3q-jyj" firstAttribute="top" secondItem="nLg-Kg-r80" secondAttribute="bottom" id="zyO-j1-jBG"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PiP-vy-RZT"/>
+                                <exclude reference="zyO-j1-jBG"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outlet property="chanceOfDescriptionLabel" destination="Y6O-jk-ZFj" id="ikX-7S-eFZ"/>
                             <outlet property="chanceOfValueLabel" destination="aim-SY-82v" id="gal-Wf-Rj6"/>
@@ -418,6 +447,7 @@
                             <outlet property="windSpeedValueLabel" destination="HcO-oa-VgV" id="VXB-hX-UVS"/>
                         </connections>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImage" destination="nLg-Kg-r80" id="Gm2-Ic-LVN"/>
                         <outlet property="backgroundScrollview" destination="fJL-0q-zxr" id="6lG-Ce-qxi"/>
@@ -431,9 +461,9 @@
         <!--Navigation Controller-->
         <scene sceneID="glx-o3-YZl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" toolbarHidden="NO" id="ifB-8K-Lot" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="ifB-8K-Lot" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="krb-4P-Ryz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
