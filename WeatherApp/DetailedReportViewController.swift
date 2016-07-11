@@ -24,6 +24,7 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         self.title = place.name
         self.backgroundImage.image = UIImage(data: place.backgroundImageData)
+        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         self.detailsView.displayPlaceInfo(self.place)
     }
 

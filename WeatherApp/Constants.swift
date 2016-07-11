@@ -60,6 +60,7 @@ class Constants {
     static let forecastCall = "https://api.forecast.io/forecast/"
     static let githubUrl = "https://raw.githubusercontent.com/alaraKalama/WeatherApp/master/weather%20backgrounds/"
     static let cleardayUrl = "clear-day.png"
+    static let hotDayUrl = "hot-day.png"
     static let clearnightUrl = "clear-night2.png"
     static let cloudydayUrl = "cloudy-day.png"
     static let cloudynightUrl = "cloudy-night.png"

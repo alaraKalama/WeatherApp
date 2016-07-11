@@ -53,8 +53,8 @@ class DownloadManager {
         
         for (index,place) in places.enumerate() {
             var url: String
-            if let icon = place.icon {
-                url = self.generateUrl(icon)
+            if place.icon != nil {
+                url = self.generateUrl(place)
                 let downloadOperation = PictureOperation(url: url, place: place)
                 downloadOperation.completionBlock = {
                     NSLog("Finished \(index) download image operation for place \(place.name!)")
@@ -79,31 +79,38 @@ class DownloadManager {
         task.resume()
     }
     
-    func generateUrl(icon: String) -> String {
+    func generateUrl(place: Place) -> String {
         var backgroundURL = String()
-        switch icon {
-        case Constants.clear_day:
-            backgroundURL = Constants.cleardayUrl
-        case Constants.clear_night:
-            backgroundURL = Constants.clearnightUrl
-        case Constants.cloudy_day:
-            backgroundURL = Constants.cloudydayUrl
-        case Constants.cloudy_night:
-            backgroundURL = Constants.cloudynightUrl
-        case Constants.partly_cloudy_day:
-            backgroundURL = Constants.partlycloudydayUrl
-        case Constants.partly_cloudy_night:
-            backgroundURL = Constants.cloudynightUrl
-        case Constants.rain:
-            backgroundURL = Constants.raindayUrl
-        case Constants.sleet:
-            backgroundURL = Constants.sleetUrl
-        case Constants.snow:
-            backgroundURL = Constants.snowdayUrl
-        case Constants.fog:
-            backgroundURL = Constants.fogUrl
-        default:
-            backgroundURL = Constants.cleardayUrl
+        if let icon = place.icon {
+            switch icon {
+            case Constants.clear_day:
+                if place.currentTemperatureC >= 28 {
+                    backgroundURL = Constants.hotDayUrl
+                } else {
+                    backgroundURL = Constants.cleardayUrl
+
+                }
+            case Constants.clear_night:
+                backgroundURL = Constants.clearnightUrl
+            case Constants.cloudy_day:
+                backgroundURL = Constants.cloudydayUrl
+            case Constants.cloudy_night:
+                backgroundURL = Constants.cloudynightUrl
+            case Constants.partly_cloudy_day:
+                backgroundURL = Constants.partlycloudydayUrl
+            case Constants.partly_cloudy_night:
+                backgroundURL = Constants.cloudynightUrl
+            case Constants.rain:
+                backgroundURL = Constants.raindayUrl
+            case Constants.sleet:
+                backgroundURL = Constants.sleetUrl
+            case Constants.snow:
+                backgroundURL = Constants.snowdayUrl
+            case Constants.fog:
+                backgroundURL = Constants.fogUrl
+            default:
+                backgroundURL = Constants.cleardayUrl
+            }
         }
         return Constants.githubUrl + backgroundURL
     }
