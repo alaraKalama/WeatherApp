@@ -18,7 +18,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: Selector("handleRefresh:"), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(PlacesViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
     }()
@@ -26,6 +26,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     var locationManager = CLLocationManager()
     let downloadManager = DownloadManager.sharedInstance
     let plistManager = PlistManager.sharedInstance
+    
+    var downloadQueue: NSOperationQueue = NSOperationQueue()
     
     var data : Dictionary<String, Dictionary<String, String>>!
     var places = [Place]()
@@ -67,6 +69,17 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         if places.count <= 0 {
             self.places = plistManager.getAllPlaces()
         }
+        
+//        if let firstPlace = self.places.first {
+//            let weatherOperation = WeatherOperation(place: firstPlace)
+//            weatherOperation.completionBlock = {
+//                NSLog("testing finished: \(weatherOperation.state)")
+//            }
+//            
+//            self.downloadQueue.maxConcurrentOperationCount = 2
+//            self.downloadQueue.addOperation(weatherOperation)
+//        }
+        
         self.downloadManager.fetchDataForPlaces(places)
     }
     
@@ -105,7 +118,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-        //self.locationManager.stopUpdatingHeading()
         self.locationManager.startMonitoringVisits()
     }
     
@@ -162,6 +174,13 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         })
     }
     
+    func didFetchDataForAllPlaces(sender: DownloadManager) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView?.reloadData()
+            self.refreshControl.endRefreshing()
+        })
+    }
+    
     // MARK: - Actions
     
     @IBAction func changeUnits(sender: UISegmentedControl) {
@@ -177,12 +196,13 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         let offsetY = (scrollView.contentOffset.y - self.backgroundImage.frame.origin.y) / self.backgroundImage.frame.height * self.offsetSpeed
         let point = CGPoint(x: 0, y: offsetY)
+        self.backgroundScrollview.minimumZoomScale = 0.25
+        self.backgroundScrollview.setZoomScale(0.5, animated: true)
         self.backgroundScrollview.setContentOffset(point, animated: true)
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        self.tableView.reloadData()
-        refreshControl.endRefreshing()
+        self.populateTableView()
     }
 }
 

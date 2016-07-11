@@ -14,10 +14,14 @@ protocol DownloadManagerDelegate: class {
 
     //TODO: Add sender as param
     func didFetchDataForPlaceAtIndex(index: NSInteger)
+    func didFetchDataForAllPlaces(sender: DownloadManager)
 }
 
 class DownloadManager {
     
+    var forecastsQueue: NSOperationQueue = NSOperationQueue()
+    var downloadImagesQueue: NSOperationQueue = NSOperationQueue()
+
     var delegate: DownloadManagerDelegate?
     var locationData: [String:AnyObject]?
     
@@ -29,52 +33,21 @@ class DownloadManager {
     // MARK: - Forecast data downloading
     
     func fetchDataForPlaces(places: [Place]) {
+        let doneOperation = NSOperation()
+        doneOperation.completionBlock = {
+            NSLog("doneOperation is done")
+            self.delegate?.didFetchDataForAllPlaces(self)
+        }
         for (index,place) in places.enumerate() {
-            self.getDataForPlace(place, atIndex: index)
-        }
-    }
-    
-    func getDataForPlace(place: Place, atIndex: NSInteger) {
-        if let latitude = place.latitude {
-            if let longitude = place.longitude {
-                
-                let URLString = Constants.forecastCall + Constants.myAPIKey + "/" + latitude + "," + longitude
-                
-                guard let url = NSURL(string: URLString) else {
-                    NSLog("Error: Cannot create url from string")
-                    return
-                }
-                
-                let urlRequest = NSURLRequest(URL: url)
-                
-                let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-                let session = NSURLSession(configuration: config)
-                
-                let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
-                    guard error == nil else {
-                        NSLog("Error calling GET on @% ->", URLString)
-                        print(error)
-                        return
-                    }
-                    guard let responseData = data else {
-                        NSLog("Error: did not recieve data")
-                        return
-                    }
-                    do {
-                        guard let json = try NSJSONSerialization.JSONObjectWithData(responseData, options: []) as? [String: AnyObject] else {
-                            return
-                        }
-                        Place.getPlaceFromJSON(json, place: place)
-                        self.delegate?.didFetchDataForPlaceAtIndex(atIndex)
-                        
-                    } catch {
-                        print("error trying to convert to JSON")
-                        return
-                    }
-                })
-                task.resume()
+            let weatherOperation = WeatherOperation(place: place)
+            //weatherOperation.queuePriority = .High
+            weatherOperation.completionBlock = {
+                NSLog("Finished \(index) operation for \(place.name)")
             }
+            doneOperation.addDependency(weatherOperation)
+            self.forecastsQueue.addOperation(weatherOperation)
         }
+        self.forecastsQueue.addOperation(doneOperation)
     }
     
     // MARK: - Background images downloading
