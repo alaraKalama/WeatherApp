@@ -12,7 +12,6 @@ import UIKit
 
 @objc protocol DownloadManagerDelegate: class {
 
-    //TODO: Add sender as param
     optional func didFetchDataForAllPlaces(sender: DownloadManager)
     optional func didDownloadBackgroundImage(sender: DownloadManager)
  }
@@ -65,6 +64,8 @@ class DownloadManager : NSObject {
         self.forecastsQueue.addOperation(doneOperation)
     }
     
+    // MARK: - Background images downloading
+    
     func downloadBackgroundImages(places:[Place]) {
         
         for (index,place) in places.enumerate() {
@@ -80,15 +81,12 @@ class DownloadManager : NSObject {
         }
     }
     
-    // MARK: - Background images downloading
-    
-    func downloadImage(url: String, vc: PlacesViewController) {
+    func downloadTableVCBackgroundImage(url: String, tableVC: PlacesViewController) {
         //TODO; cache those images
         let url = NSURL(string: url)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
             if let fetchedData = responseData {
-                vc.backgroundImageData = fetchedData
-                
+                tableVC.backgroundImageData = fetchedData
                 self.delegate?.didDownloadBackgroundImage!(self)
             } else {
                 NSLog("Somethings wrong -> \(error?.description)")

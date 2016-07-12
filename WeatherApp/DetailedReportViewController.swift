@@ -42,6 +42,4 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
         let point = CGPoint(x: 0, y: offsetY)
         self.backgroundScrollview.setContentOffset(point, animated: true)
     }
-    
-
 }
