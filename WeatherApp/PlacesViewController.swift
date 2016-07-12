@@ -35,7 +35,8 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     //do a [string:anyobject] data object, take its value from the delegate, than parse the json in the static place func
     var currentLocation: CLLocation!
     var locationData: [String : AnyObject]?
-
+    var preventAnimation = Set<NSIndexPath>()
+    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Lifecycle methods 

@@ -128,6 +128,6 @@ class DownloadManager : NSObject {
                 backgroundURL = Constants.cleardayUrl
             }
         }
-        return Constants.githubUrl + backgroundURL
+        return backgroundURL
     }
 }
