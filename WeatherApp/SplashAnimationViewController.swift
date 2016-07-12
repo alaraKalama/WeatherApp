@@ -38,7 +38,7 @@ class SplashAnimationViewController: UIViewController, DownloadManagerDelegate {
     }
     
     func downloadNeededAssets() {
-        self.downloadManager.downloadTableVCBackgroundImage(Constants.githubUrl + Constants.tablebackground, tableVC: self.placesVC!)
+        self.downloadManager.downloadTableVCBackgroundImage(Constants.githubUrl + Constants.tablebackgroundUrl, tableVC: self.placesVC!)
     }
     
     func didDownloadBackgroundImage(sender: DownloadManager) {

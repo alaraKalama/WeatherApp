@@ -52,7 +52,7 @@
 		A6ED5C491D252AE80044C801 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6ED5C4C1D252AE80044C801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6ED5C4E1D252AE80044C801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A6ED5C541D252B190044C801 /* Places.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Places.plist; sourceTree = "<group>"; };
+		A6ED5C541D252B190044C801 /* Places.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Places.plist; path = WeatherApp/Places.plist; sourceTree = "<group>"; };
 		A6ED5C7B1D254DE30044C801 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +118,9 @@
 			children = (
 				A6C0F9B71D2A467200074B72 /* CoreLocation.framework */,
 				A6ED5C3E1D252AE80044C801 /* WeatherApp */,
+				A6ED5C461D252AE80044C801 /* WeatherApp.xcdatamodeld */,
+				A6ED5C431D252AE80044C801 /* Main.storyboard */,
+				A6ED5C541D252B190044C801 /* Places.plist */,
 				A6ED5C3D1D252AE80044C801 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -138,9 +141,6 @@
 				A6EA82CA1D34DC4D00FBD5F5 /* SplashAnimation */,
 				A6ED5C7D1D254DEC0044C801 /* PlacesTableView */,
 				A67C4B701D2569C30016F6E1 /* DetailedReport */,
-				A6ED5C461D252AE80044C801 /* WeatherApp.xcdatamodeld */,
-				A6ED5C431D252AE80044C801 /* Main.storyboard */,
-				A6ED5C541D252B190044C801 /* Places.plist */,
 				A67C4B781D26571B0016F6E1 /* Managers */,
 				A60538E91D33C149003A0905 /* Operations */,
 			);
@@ -269,6 +269,7 @@
 				A6ED5C441D252AE80044C801 /* Base */,
 			);
 			name = Main.storyboard;
+			path = WeatherApp;
 			sourceTree = "<group>";
 		};
 		A6ED5C4B1D252AE80044C801 /* LaunchScreen.storyboard */ = {
@@ -419,7 +420,8 @@
 				A6ED5C471D252AE80044C801 /* WeatherApp.xcdatamodel */,
 			);
 			currentVersion = A6ED5C471D252AE80044C801 /* WeatherApp.xcdatamodel */;
-			path = WeatherApp.xcdatamodeld;
+			name = WeatherApp.xcdatamodeld;
+			path = WeatherApp/WeatherApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

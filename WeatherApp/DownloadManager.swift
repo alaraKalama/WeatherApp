@@ -82,22 +82,16 @@ class DownloadManager : NSObject {
     }
     
     func downloadTableVCBackgroundImage(url: String, tableVC: PlacesViewController) {
-        //TODO; cache those images
-        if let cachedData = CacheManager.sharedInstance.cache.valueForKey(Constants.tablebackgroundUrl) {
-            tableVC.backgroundImageData = cachedData as? NSData
-            self.delegate?.didDownloadBackgroundImage!(self)
-        } else {
-            let url = NSURL(string: url)
-            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
-                if let fetchedData = responseData {
-                    tableVC.backgroundImageData = fetchedData
-                    self.delegate?.didDownloadBackgroundImage!(self)
-                } else {
-                    NSLog("Somethings wrong -> \(error?.description)")
-                }
+        let url = NSURL(string: url)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
+            if let fetchedData = responseData {
+                tableVC.backgroundImageData = fetchedData
+                self.delegate?.didDownloadBackgroundImage!(self)
+            } else {
+                NSLog("Somethings wrong -> \(error?.description)")
             }
-            task.resume()
         }
+        task.resume()
     }
     
     func generateUrl(place: Place) -> String {
