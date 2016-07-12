@@ -10,14 +10,14 @@ import Foundation
 import CoreLocation
 import UIKit
 
-protocol DownloadManagerDelegate: class {
+@objc protocol DownloadManagerDelegate: class {
 
     //TODO: Add sender as param
-    func didFetchDataForPlaceAtIndex(index: NSInteger)
-    func didFetchDataForAllPlaces(sender: DownloadManager)
-}
+    optional func didFetchDataForAllPlaces(sender: DownloadManager)
+    optional func didDownloadBackgroundImage(sender: DownloadManager)
+ }
 
-class DownloadManager {
+class DownloadManager : NSObject {
     
     var forecastsQueue: NSOperationQueue = NSOperationQueue()
     var downloadImagesQueue: NSOperationQueue = NSOperationQueue()
@@ -26,17 +26,33 @@ class DownloadManager {
     var locationData: [String:AnyObject]?
     
     static let sharedInstance = DownloadManager()
-    private init() {
-        
+    private override init() {
+        super.init()
+        self.forecastsQueue.addObserver(self, forKeyPath: "operations", options: .New, context: nil)
+    }
+    
+    deinit {
+        self.forecastsQueue.removeObserver(self, forKeyPath: "operations")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if object != nil && object! as! NSObject == self.forecastsQueue && keyPath != nil && keyPath! == "operations" {
+            if self.forecastsQueue.operations.count == 0 {
+                NSLog("all done")
+            }
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
     
     // MARK: - Forecast data downloading
     
     func fetchDataForPlaces(places: [Place]) {
+        
         let doneOperation = NSOperation()
         doneOperation.completionBlock = {
             NSLog("doneOperation is done")
-            self.delegate?.didFetchDataForAllPlaces(self)
+            self.delegate?.didFetchDataForAllPlaces!(self)
         }
         for (index,place) in places.enumerate() {
             let weatherOperation = WeatherOperation(place: place)
@@ -66,14 +82,16 @@ class DownloadManager {
     
     // MARK: - Background images downloading
     
-    func downloadImage(url: String, view: UIImageView) {
+    func downloadImage(url: String, vc: PlacesViewController) {
         //TODO; cache those images
         let url = NSURL(string: url)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
-            if let data = responseData {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    view.image = UIImage(data: data)
-                })
+            if let fetchedData = responseData {
+                vc.backgroundImageData = fetchedData
+                
+                self.delegate?.didDownloadBackgroundImage!(self)
+            } else {
+                NSLog("Somethings wrong -> \(error?.description)")
             }
         }
         task.resume()

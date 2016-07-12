@@ -29,7 +29,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var downloadQueue: NSOperationQueue = NSOperationQueue()
     
-    var data : Dictionary<String, Dictionary<String, String>>!
+    var backgroundImageData: NSData?
     var places = [Place]()
     
     //do a [string:anyobject] data object, take its value from the delegate, than parse the json in the static place func
@@ -48,7 +48,12 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.dataSource = self
         self.populateTableView()
         self.tableView.addSubview(self.refreshControl)
-        self.downloadManager.downloadImage(Constants.githubUrl + Constants.tablebackground, view: self.backgroundImage)
+        if self.backgroundImageData?.bytes != nil {
+            self.backgroundImage.image = UIImage(data: self.backgroundImageData!)
+        } else {
+            NSLog("problem")
+        }
+        //self.downloadManager.downloadImage(Constants.githubUrl + Constants.tablebackground, view: self.backgroundImage)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -157,12 +162,6 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // MARK: - Download Manager Delegate
-    
-    func didFetchDataForPlaceAtIndex(atIndex: NSInteger) {
-        dispatch_async(dispatch_get_main_queue(), {
-            self.tableView?.reloadData()
-        })
-    }
     
     func didFetchDataForAllPlaces(sender: DownloadManager) {
         dispatch_async(dispatch_get_main_queue(), {
