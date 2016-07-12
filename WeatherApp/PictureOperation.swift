@@ -101,7 +101,6 @@ class PictureOperation: NSOperation {
     }
     
     func downloadImage(url: String, view: UIImageView) {
-        //TODO; cache those images
         let url = NSURL(string: url)
         self.task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
             if let data = responseData {

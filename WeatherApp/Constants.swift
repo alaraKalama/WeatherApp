@@ -72,7 +72,7 @@ class Constants {
     static let snowdayUrl = "snow-day2.png"
     static let windydayUrl = "windy-day.png"
     static let windynightUrl = "windy-night.png"
-    static let tablebackground = "table-background.png"
+    static let tablebackgroundUrl = "table-background.png"
     
     
     //MARK: - others
