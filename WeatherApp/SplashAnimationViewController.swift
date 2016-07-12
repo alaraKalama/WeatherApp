@@ -43,7 +43,9 @@ class SplashAnimationViewController: UIViewController, DownloadManagerDelegate {
     
     func didDownloadBackgroundImage(sender: DownloadManager) {
         let navVC = UINavigationController(rootViewController: self.placesVC!)
-        self.moonImageView.stopAnimating()
-        self.presentViewController(navVC, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.moonImageView.stopAnimating()
+            self.presentViewController(navVC, animated: true, completion: nil)
+        })
     }
 }
