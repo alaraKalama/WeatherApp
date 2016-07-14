@@ -118,7 +118,6 @@
 			children = (
 				A6C0F9B71D2A467200074B72 /* CoreLocation.framework */,
 				A6ED5C3E1D252AE80044C801 /* WeatherApp */,
-				A6ED5C461D252AE80044C801 /* WeatherApp.xcdatamodeld */,
 				A6ED5C431D252AE80044C801 /* Main.storyboard */,
 				A6ED5C541D252B190044C801 /* Places.plist */,
 				A6ED5C3D1D252AE80044C801 /* Products */,
@@ -138,6 +137,7 @@
 			children = (
 				A6ED5C7A1D254D400044C801 /* Supporting Files */,
 				A67C4B731D257E5C0016F6E1 /* Model */,
+				A6F8A2541D35326100772792 /* CoreData */,
 				A6EA82CA1D34DC4D00FBD5F5 /* SplashAnimation */,
 				A6ED5C7D1D254DEC0044C801 /* PlacesTableView */,
 				A67C4B701D2569C30016F6E1 /* DetailedReport */,
@@ -167,6 +167,14 @@
 				A6ED5C7B1D254DE30044C801 /* PlaceTableViewCell.swift */,
 			);
 			name = PlacesTableView;
+			sourceTree = "<group>";
+		};
+		A6F8A2541D35326100772792 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A6ED5C461D252AE80044C801 /* WeatherApp.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,8 +428,7 @@
 				A6ED5C471D252AE80044C801 /* WeatherApp.xcdatamodel */,
 			);
 			currentVersion = A6ED5C471D252AE80044C801 /* WeatherApp.xcdatamodel */;
-			name = WeatherApp.xcdatamodeld;
-			path = WeatherApp/WeatherApp.xcdatamodeld;
+			path = WeatherApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

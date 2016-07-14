@@ -28,12 +28,31 @@ class DetailedReportViewController: UIViewController, UIScrollViewDelegate {
         }
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         self.detailsView.displayPlaceInfo(self.place)
+        self.place.addObserver(self, forKeyPath: "backgroundImageData", options: .New, context: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    deinit {
+        self.place.removeObserver(self, forKeyPath: "backgroundImageData")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if object != nil && object as? Place == self.place && keyPath != nil && keyPath! == "backgroundImageData" {
+            if self.place.backgroundImageData.bytes != nil {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.backgroundImage.alpha = 0
+                    UIView.animateWithDuration(0.5, animations: {
+                        self.backgroundImage.image = UIImage(data: self.place.backgroundImageData)
+                        self.backgroundImage.alpha = 1
+                    })
+                })
+            }
+        }
+    }
+        
     // MARK: - UI Events
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {

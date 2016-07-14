@@ -72,8 +72,11 @@ class PictureOperation: NSOperation {
     }
     
     override func start() {
+        NSLog("💤 started sleeping")
+        sleep(10)
+        NSLog("🙄 woke up")
         if let cachedImageData = CacheManager.sharedInstance.cache.objectForKey(self.url!) {
-            NSLog("Didn't download image \(self.url!)")
+            NSLog("Didn't download image \(self.url!) because it is cashed")
             self.place?.backgroundImageData = cachedImageData as! NSData
         } else {
             let url = NSURL(string: Constants.githubUrl + self.url!)
@@ -98,17 +101,5 @@ class PictureOperation: NSOperation {
     
     func finish() {
         self.state = .Finished
-    }
-    
-    func downloadImage(url: String, view: UIImageView) {
-        let url = NSURL(string: url)
-        self.task = NSURLSession.sharedSession().dataTaskWithURL(url!) { (responseData, responseUrl, error) -> Void in
-            if let data = responseData {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    view.image = UIImage(data: data)
-                })
-            }
-        }
-        self.task!.resume()
     }
 }

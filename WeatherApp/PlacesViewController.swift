@@ -168,7 +168,7 @@ class PlacesViewController: UIViewController, UITableViewDataSource, UITableView
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView?.reloadData()
             self.refreshControl.endRefreshing()
-            self.downloadManager.downloadBackgroundImages(self.places)
+            self.downloadManager.downloadPlacesBackgroundImages(self.places)
         })
     }
     

@@ -14,26 +14,26 @@ class UnitConversionManager {
     
     // MARK: - Temperature conversions
     
-    func FahrenheitToCelsius(fahrenheit: Int) -> Int {
+    static func FahrenheitToCelsius(fahrenheit: Int) -> Int {
         let celsius = (Double)(fahrenheit - 32) * 0.56
         return Int(celsius)
     }
     
-    func CelsiusToFahrenheit(celsius: Int) -> Int {
+    static func CelsiusToFahrenheit(celsius: Int) -> Int {
         let fahrenheit = (Double)(celsius) * 1.8 + 32
         return Int(fahrenheit)
     }
     
     // MARK: - Distance conversions
     
-    func milesToKilometers(miles: Double) -> Double {
+    static func milesToKilometers(miles: Double) -> Double {
         let km = miles / 0.62137
         return km
     }
     
     // MARK: - Pressure conversions
     
-    func milibarsToInches(mb: Double) -> Double {
+    static func milibarsToInches(mb: Double) -> Double {
         return mb *  0.0295301
     }
 }

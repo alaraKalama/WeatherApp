@@ -11,9 +11,7 @@
 import Foundation
 import UIKit
 
-class Place {
-    
-    static let conversionManager = UnitConversionManager()
+class Place : NSObject {
     
     // MARK: - properties
     
@@ -39,7 +37,7 @@ class Place {
     var timezone: String?
     var summary: String?
     var hourly: [String:AnyObject]?
-    var backgroundImageData = NSData()
+    dynamic var backgroundImageData = NSData()
     
     //MARK: - Functions
     
@@ -79,22 +77,22 @@ class Place {
             print(currentWather)
             if let temperatureInFahrenheit = currentWather[Constants.temperature] as? Int {
                 place.currentTemperatureF = temperatureInFahrenheit
-                place.currentTemperatureC = conversionManager.FahrenheitToCelsius(temperatureInFahrenheit)
+                place.currentTemperatureC = UnitConversionManager.FahrenheitToCelsius(temperatureInFahrenheit)
             }
             if let feelsLike = currentWather[Constants.feelsLike] as? Int {
                 place.feelsLikeTemperatureF = feelsLike
-                place.feelsLikeTemperatureC = conversionManager.FahrenheitToCelsius(feelsLike)
+                place.feelsLikeTemperatureC = UnitConversionManager.FahrenheitToCelsius(feelsLike)
             }
             if let humidity = currentWather[Constants.humidity] as? Double {
                 place.humidity = Int(humidity * 100) % 100
             }
             if let visibility = currentWather[Constants.visibility] as? Double {
                 place.visibilityMi = visibility
-                place.visibilityKm = conversionManager.milesToKilometers(visibility)
+                place.visibilityKm = UnitConversionManager.milesToKilometers(visibility)
             }
             if let pressure = currentWather[Constants.pressure] as? Double {
                 place.pressureMb = pressure
-                place.pressureIn = conversionManager.milibarsToInches(pressure)
+                place.pressureIn = UnitConversionManager.milibarsToInches(pressure)
             }
             if let precipitation = currentWather[Constants.precipProbability] as? Double {
                 place.precipitation = Int(precipitation * 100) % 100
@@ -104,7 +102,7 @@ class Place {
             }
             if let windSpeed = currentWather[Constants.windSpeed] as? Double {
                 place.windSpeedMi = windSpeed
-                place.windSpeedKm = conversionManager.milesToKilometers(windSpeed)
+                place.windSpeedKm = UnitConversionManager.milesToKilometers(windSpeed)
             }
             if let icon = currentWather[Constants.icon] as? String {
                 place.icon = icon
